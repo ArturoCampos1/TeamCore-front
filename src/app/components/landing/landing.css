@@ -1,0 +1,372 @@
+/* Header */
+
+.header {
+    font-family: "Manrope", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
+    border-bottom: 1px solid #e0e0e0;
+
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1000;
+}
+
+.header button{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.btn-inicio{
+    color: #2E2BC2;
+    border: none;
+    background-color: transparent;
+}
+
+.btn-registro{
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    background-color: #5D5FEF;
+}
+
+/* Content - 1 */
+
+.content-1 {
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.content-1-inner {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-1-title{
+    font-size: 60px;
+    margin-bottom: 5px;
+}
+
+.content-1-text{
+    font-size: 16px;
+    color: #4b4a5a;
+}
+
+.content-1-numEmpresas{
+    color: #6265F5;
+}
+
+.content-1-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.content-1-info button{
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    background-color: #5D5FEF;
+    transition: 0.5s;
+}
+
+.content-1-info button:hover {
+    transition: 0.5s;
+    background-color: #5d5fefd8;
+    cursor: pointer;
+}
+
+.content-1 img{
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+    width: 40%;
+    transition: transform 0.2s ease;
+}
+
+.content-1 img:hover {
+    transform: translateY(-3px);
+    cursor: url('/teamcorecursor.png'), pointer;
+}
+
+/* Content - 2 */
+
+.content-2{
+    background-color: #f3f4f5;
+    padding: 40px 40px;
+}
+
+.content-2-title{
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.content-2-text{
+    font-size: 16px;
+    color: #4b4a5a;
+    margin-bottom: 20px;
+}
+
+.content-2-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.content-2-cards h5{
+    font-size: 20px;
+    padding: 10px 0px;
+    margin: auto;
+}
+
+.content-2-cards img{
+    vertical-align: middle;
+}
+
+.card {
+    background: #f8f9fa;
+    padding: 20px;
+    height: 170px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-1 {
+    grid-column: span 2;
+}
+
+.card-1-img{
+    vertical-align: middle;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: rgba(137, 137, 214, 0.47);
+}
+
+.card-2 {
+    grid-column: span 1;
+}
+
+.card-2-img{
+    vertical-align: middle;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: rgba(195, 232, 110, 0.522);
+}
+
+/* fila 2 */
+.card-3 {
+    grid-column: span 1;
+}
+
+.card-3-img{
+    vertical-align: middle;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: rgba(215, 73, 135, 0.426);
+}
+
+.card-4 {
+    grid-column: span 2;
+}
+
+.card-4-img{
+    vertical-align: middle;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: rgba(245, 245, 65, 0.467);
+}
+
+/* Content - 3 */
+
+.content-3{
+    padding: 70px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+}
+
+.content-3-card{
+    text-align: center;
+    background-color: #5D5FEF;
+    width: 60%;
+    height: 280px;
+    padding: 20px;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-3-title{
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.content-3-text{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.content-3-button {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.content-3-button1{
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #5D5FEF;
+    border: none;
+    background-color: white;
+    transition: 0.5s;
+}
+
+.content-3-button1:hover {
+    background-color: #4547ea;
+    color: white;
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(69, 71, 234, 0.4);
+}
+
+.content-3-button2{
+    background-color: rgba(255, 255, 255, 0.514);
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: 2px solid #ffffff9a;
+    background-color: transparent;
+    transition: 0.5s;
+}
+
+.content-3-button2:hover {
+    transition: 0.5s;
+    background-color: rgba(255, 255, 255, 0.271);
+    cursor: pointer;
+}
+
+/* Footer */
+
+.footer{
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: center;
+}
+
+.part-1{
+    font-family: "Manrope", sans-serif;
+}
+
+.part-2{
+    gap: 25px;
+    display: flex;  
+    list-style: none;
+}
+
+.part-2, .part-3{
+    color: #4b4a5a;
+}
+
+@media screen and (max-width: 1500px) {
+    
+    .content-1-title{
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+    
+    .content-1-inner{
+        width: 95%;
+    }
+
+    .content-1-info{
+        width: 50%;
+    }
+
+    .content-3-card{
+        width: 80%;
+    }
+    
+}
+
+@media screen and (max-width: 800px) {
+    
+    .content-1-inner{
+        width: 90%;
+    }
+
+    .content-1-title{
+        font-size: 20px;
+    }
+
+    .content-1-text{
+        font-size: 14px;
+    }
+
+    .content-2-cards {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card{
+        height: auto;
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+    
+    .content-1-inner{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .content-1-info{
+        width: 100%;
+        text-align: center;
+    }
+
+    .content-1 img{
+        width: 100%;
+    }
+
+    .content-3-card{
+        width: 100%;
+        height: auto;
+    }
+
+    .content-3-title{
+        font-size: 28px;
+    }
+
+    .content-3-card p{
+        font-size: 14px;
+    }
+
+    .footer{
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+}
