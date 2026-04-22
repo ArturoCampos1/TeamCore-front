@@ -93,7 +93,7 @@
 
 .content-1 img:hover {
     transform: translateY(-3px);
-    cursor: url('/teamcorecursor.png'), pointer;
+    cursor: url("../../../assets/teamcorecursor.png"), pointer;
 }
 
 /* Content - 2 */
