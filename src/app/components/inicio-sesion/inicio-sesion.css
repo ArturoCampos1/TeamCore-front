@@ -1,0 +1,35 @@
+/* Header */
+
+.header {
+    font-family: "Manrope", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
+    border-bottom: 1px solid #e0e0e0;
+
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1000;
+}
+
+.header button{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.btn-inicio{
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: #2E2BC2;
+    border: none;
+    background-color: transparent;
+}
+
+.btn-registro{
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    background-color: #5D5FEF;
+}
