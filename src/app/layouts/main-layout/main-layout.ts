@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Menu } from '../../components/menu/menu';
 
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterModule, Menu],
+  imports: [RouterModule],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.css',
 })

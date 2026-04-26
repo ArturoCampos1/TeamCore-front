@@ -1,0 +1,100 @@
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h2 routerLink="/landing">TeamCore</h2>
+        <div>
+            <button routerLink="/landing/inicio-sesion" class="btn-inicio">Inicio de Sesión</button>
+            <button routerLink="/landing/registro" class="btn-registro">Registro</button>
+        </div>
+    </div>
+
+    <!-- FORMULARIO DE REGISTRO -->
+    <div class="content-registro">
+        <h3>Detalles de la compañía.</h3>
+        <p>Completa los siguientes datos para crear tu empresa en TeamCore.</p>
+        <form class="form-registro">
+            <div class="steps">
+                <div class="step active">1</div>
+                <div class="line active"></div>
+                <div class="step active">2</div>
+                <div class="line"></div>
+                <div class="step">3</div>
+            </div>
+            <div class="input-group img-logo">
+                <label>LOGO DE LA EMPRESA</label>
+                <input type="file" accept="image/*">
+            </div>
+            <div class="row">
+                <div class="input-group">
+                    <label>Nombre de Administrador</label>
+                    <input type="text" placeholder="Juan Pérez">
+                </div>
+                <div class="input-group">
+                    <label>Nombre de la Empresa</label>
+                    <input type="text" placeholder="Tech Solutions S.A.">
+                </div>
+            </div>
+            <!-- INPUTS FULL -->
+            <div class="input-group">
+                <label>EMAIL DE TRABAJO</label>
+                <input type="email" placeholder="juan.perez@techsolutions.com">
+            </div>
+            <div class="input-group">
+                <label>CONTRASEÑA</label>
+                <input type="password" disabled>
+            </div>
+            <div class="row">
+                <div class="input-group">
+                    <label>CIF</label>
+                    <input type="text" placeholder="A12345678">
+                </div>
+                <div class="input-group">
+                    <label>FECHA DE FUNDACIÓN</label>
+                    <input type="date" placeholder="17/05/2010">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Área de Trabajo</label>
+                <select>
+                    <option disabled selected>Selecciona un área</option>
+
+                    <option>Administración</option>
+                    <option>Recursos Humanos</option>
+                    <option>Finanzas</option>
+                    <option>Contabilidad</option>
+                    <option>Marketing</option>
+                    <option>Marketing Digital</option>
+                    <option>Ventas</option>
+                    <option>Atención al Cliente</option>
+                    <option>Soporte Técnico</option>
+                    <option>Desarrollo de Software</option>
+                    <option>Diseño UX/UI</option>
+                    <option>Diseño Gráfico</option>
+                    <option>Producto</option>
+                    <option>Gestión de Proyectos</option>
+                    <option>Logística</option>
+                    <option>Compras</option>
+                    <option>Operaciones</option>
+                    <option>Calidad</option>
+                    <option>Investigación y Desarrollo</option>
+                    <option>Legal</option>
+                    <option>Seguridad</option>
+                    <option>Data / Analítica</option>
+                    <option>Inteligencia de Negocio</option>
+                    <option>IT / Sistemas</option>
+                    <option>Infraestructura</option>
+                    <option>Ciberseguridad</option>
+                    <option>Producción</option>
+                    <option>Recursos Digitales</option>
+                    <option>Comunicación</option>
+                    <option>Relaciones Públicas</option>
+                    <option>Formación</option>
+                </select>
+            </div>
+
+                <button class="btn-volver" routerLink="/landing/registro" type="submit">Volver</button>
+                <button class="btn-crear" routerLink="/landing/registroStep2" type="submit">Siguiente</button>
+        </form>
+    </div>
+</div>

@@ -32,6 +32,11 @@
     background-color: #5D5FEF;
 }
 
+.btn-inicio:hover, .btn-registro:hover{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
 /* Content - 1 */
 
 .content-1 {

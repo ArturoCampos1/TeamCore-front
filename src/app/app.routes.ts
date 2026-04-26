@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { LandingLayout } from './layouts/landing-layout/landing-layout';
 import { MainLayout } from './layouts/main-layout/main-layout';
-import { Menu } from './components/menu/menu';
 import { Landing } from './components/landing/landing';
 import { InicioSesion } from './components/inicio-sesion/inicio-sesion';
 import { Registro } from './components/registro/registro';
+import { RegistroStep2 } from './components/registro-step2/registro-step2';
 
 export const routes: Routes = [
 
@@ -22,7 +22,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: Landing },
       { path: 'inicio-sesion', component: InicioSesion },
-      { path: 'registro', component: Registro }
+      { path: 'registro', component: Registro },
+      { path: 'registroStep2', component: RegistroStep2 }
     ]
   },
 
@@ -31,8 +32,8 @@ export const routes: Routes = [
     path: '',
     component: MainLayout,
     children: [
-      { path: 'menu', component: Menu }
-    ]
+      // Aquí irían las rutas de la app, por ejemplo:
+      ]
   }
 
 ];

@@ -2,12 +2,50 @@
 
     <!-- HEADER -->
     <div class="header">
-        <h2>TeamCore</h2>
+        <h2 routerLink="/landing">TeamCore</h2>
         <div>
             <button routerLink="/landing/inicio-sesion" class="btn-inicio">Inicio de Sesión</button>
             <button routerLink="/landing/registro" class="btn-registro">Registro</button>
         </div>
     </div>
 
+    <!-- FORMULARIO DE REGISTRO -->
+    <div class="content-registro">
+        <h3>Crea tu área de trabajo.</h3>
+        <p>Únete a nuestra plataforma que ayuda a escalar operaciones con precisión editorial y eficiencia sin esfuerzo.</p>
+        <form class="form-registro">
+            <div class="steps">
+                <div class="step active">1</div>
+                <div class="line"></div>
+                <div class="step">2</div>
+                <div class="line"></div>
+                <div class="step">3</div>
+            </div>
+            <div class="row">
+                <div class="input-group">
+                    <label>Nombre de Administrador</label>
+                    <input type="text" placeholder="Juan Pérez">
+                </div>
+                <div class="input-group">
+                    <label>Nombre de la Empresa</label>
+                    <input type="text" placeholder="Tech Solutions S.A.">
+                </div>
+            </div>
+            <!-- INPUTS FULL -->
+            <div class="input-group">
+                <label>EMAIL DE TRABAJO</label>
+                <input type="email" placeholder="juan.perez@techsolutions.com">
+            </div>
+            <div class="input-group">
+                <label>CONTRASEÑA</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+            <button routerLink="/landing/registroStep2" type="submit">Siguiente</button>
+            <p class="terms">
+                Haciendo click en "Siguiente", aceptas nuestros
+                <a href="#">Términos de Servicio</a> y
+                <a href="#">Política de Privacidad</a>
+            </p>
+        </form>
+    </div>
 </div>
-<button routerLink="/">Volver</button>
