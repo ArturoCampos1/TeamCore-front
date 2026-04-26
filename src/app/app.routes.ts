@@ -5,6 +5,7 @@ import { Landing } from './components/landing/landing';
 import { InicioSesion } from './components/inicio-sesion/inicio-sesion';
 import { Registro } from './components/registro/registro';
 import { RegistroStep2 } from './components/registro-step2/registro-step2';
+import { RegistroStep3 } from './components/registro-step3/registro-step3';
 
 export const routes: Routes = [
 
@@ -23,7 +24,8 @@ export const routes: Routes = [
       { path: '', component: Landing },
       { path: 'inicio-sesion', component: InicioSesion },
       { path: 'registro', component: Registro },
-      { path: 'registroStep2', component: RegistroStep2 }
+      { path: 'registroStep2', component: RegistroStep2 },
+      { path: 'registroStep3', component: RegistroStep3 }
     ]
   },
 

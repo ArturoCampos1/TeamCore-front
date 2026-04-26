@@ -36,7 +36,7 @@
     background-color: #5D5FEF;
 }
 
-.btn-inicio:hover, .btn-registro:hover{
+.btn-inicio:hover, .btn-registro:hover, .btn-volver:hover, .btn-siguiente:hover{
     cursor: pointer;
     transition: 0.3s;
 }
@@ -104,7 +104,7 @@
     box-shadow: 0 0 0 2px rgba(93,95,239,0.2);
 }
 
-.form-registro button {
+.btn-siguiente {
     margin-top: 10px;
     padding: 14px;
     border-radius: 10px;
@@ -113,6 +113,12 @@
     color: white;
     font-weight: 600;
     cursor: pointer;
+}
+
+.btn-volver {
+    padding: 10px;
+    color: #6b7280;
+    border: none;
 }
 
 .terms {

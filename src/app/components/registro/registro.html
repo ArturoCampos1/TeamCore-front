@@ -13,7 +13,7 @@
     <div class="content-registro">
         <h3>Crea tu área de trabajo.</h3>
         <p>Únete a nuestra plataforma que ayuda a escalar operaciones con precisión editorial y eficiencia sin esfuerzo.</p>
-        <form class="form-registro">
+        <form class="form-registro" [formGroup]="formRegistro" (ngSubmit)="onSubmit()">
             <div class="steps">
                 <div class="step active">1</div>
                 <div class="line"></div>
@@ -23,24 +23,28 @@
             </div>
             <div class="row">
                 <div class="input-group">
-                    <label>Nombre de Administrador</label>
-                    <input type="text" placeholder="Juan Pérez">
+                    <label>NOMBRE DEL ADMINISTRADOR</label>
+                    <input formControlName="nombreAdministrador" type="text" placeholder="Juan Pérez">
                 </div>
                 <div class="input-group">
-                    <label>Nombre de la Empresa</label>
-                    <input type="text" placeholder="Tech Solutions S.A.">
+                    <label>NOMBRE DE LA EMPRESA</label>
+                    <input formControlName="nombreEmpresa" type="text" placeholder="Tech Solutions S.A.">
                 </div>
             </div>
-            <!-- INPUTS FULL -->
+                <div class="input-group">
+                <label>DNI</label>
+                <input formControlName="dniUsuario" type="text" placeholder="12345678A">
+            </div>
             <div class="input-group">
                 <label>EMAIL DE TRABAJO</label>
-                <input type="email" placeholder="juan.perez@techsolutions.com">
+                <input formControlName="email" type="email" placeholder="juan.perez@techsolutions.com">
             </div>
             <div class="input-group">
                 <label>CONTRASEÑA</label>
-                <input type="password" placeholder="••••••••">
+                <input formControlName="contrasena" type="password" placeholder="••••••••">
             </div>
-            <button routerLink="/landing/registroStep2" type="submit">Siguiente</button>
+            <button class="btn-volver" routerLink="/landing">Volver</button>
+            <button class="btn-siguiente" type="submit">Siguiente</button>
             <p class="terms">
                 Haciendo click en "Siguiente", aceptas nuestros
                 <a href="#">Términos de Servicio</a> y
