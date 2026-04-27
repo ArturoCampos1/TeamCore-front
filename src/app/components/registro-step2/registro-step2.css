@@ -14,6 +14,11 @@
     z-index: 1000;
 }
 
+.header-title{
+    display: flex;
+    gap: 10px;
+}
+
 .header h2:hover {
     cursor: pointer;
 }
@@ -42,6 +47,12 @@
 }
 
 /* Formulario de registro */
+
+.error{
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+}
 
 .content-registro {
     padding: 20px;

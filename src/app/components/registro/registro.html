@@ -2,18 +2,23 @@
 
     <!-- HEADER -->
     <div class="header">
-        <h2 routerLink="/landing">TeamCore</h2>
+        <div routerLink="/landing" class="header-title">
+            <img src="assets/teamcorelogo.png" width="60px" alt="Logo de TeamCore">
+            <h2>TeamCore</h2>
+        </div>
         <div>
             <button routerLink="/landing/inicio-sesion" class="btn-inicio">Inicio de Sesión</button>
             <button routerLink="/landing/registro" class="btn-registro">Registro</button>
         </div>
     </div>
 
-    <!-- FORMULARIO DE REGISTRO -->
+    <!-- FORMULARIO -->
     <div class="content-registro">
         <h3>Crea tu área de trabajo.</h3>
         <p>Únete a nuestra plataforma que ayuda a escalar operaciones con precisión editorial y eficiencia sin esfuerzo.</p>
+
         <form class="form-registro" [formGroup]="formRegistro" (ngSubmit)="onSubmit()">
+
             <div class="steps">
                 <div class="step active">1</div>
                 <div class="line"></div>
@@ -21,35 +26,135 @@
                 <div class="line"></div>
                 <div class="step">3</div>
             </div>
-            <div class="row">
-                <div class="input-group">
-                    <label>NOMBRE DEL ADMINISTRADOR</label>
-                    <input formControlName="nombreAdministrador" type="text" placeholder="Juan Pérez">
-                </div>
-                <div class="input-group">
-                    <label>NOMBRE DE LA EMPRESA</label>
-                    <input formControlName="nombreEmpresa" type="text" placeholder="Tech Solutions S.A.">
-                </div>
-            </div>
-                <div class="input-group">
-                <label>DNI</label>
-                <input formControlName="dniUsuario" type="text" placeholder="12345678A">
-            </div>
+
+            <!-- NOMBRE ADMIN -->
             <div class="input-group">
-                <label>EMAIL DE TRABAJO</label>
-                <input formControlName="email" type="email" placeholder="juan.perez@techsolutions.com">
+                <label>NOMBRE DEL ADMINISTRADOR (*)</label>
+                <input formControlName="nombreAdministrador" type="text" placeholder="Juan Pérez" required>
+
+                <small class="error"
+                    *ngIf="formRegistro.get('nombreAdministrador')?.touched && formRegistro.get('nombreAdministrador')?.invalid">
+
+                    <span *ngIf="formRegistro.get('nombreAdministrador')?.errors?.['minlength']">
+                        Mínimo 3 caracteres
+                    </span>
+
+                    <span *ngIf="formRegistro.get('nombreAdministrador')?.errors?.['required']">
+                        El nombre del administrador es obligatorio
+                    </span>
+
+                    <span *ngIf="formRegistro.get('nombreAdministrador')?.errors?.['maxlength']">
+                        Máximo 25 caracteres
+                    </span>
+
+                </small>
             </div>
+
+            <!-- NOMBRE EMPRESA -->
             <div class="input-group">
-                <label>CONTRASEÑA</label>
-                <input formControlName="contrasena" type="password" placeholder="••••••••">
+                <label>NOMBRE DE LA EMPRESA (*)</label>
+                <input formControlName="nombreEmpresa" type="text" placeholder="Tech Solutions S.A." required>
+
+                <small class="error"
+                    *ngIf="formRegistro.get('nombreEmpresa')?.touched && formRegistro.get('nombreEmpresa')?.invalid">
+
+                    <span *ngIf="formRegistro.get('nombreEmpresa')?.errors?.['minlength']">
+                        Mínimo 3 caracteres
+                    </span>
+
+                    <span *ngIf="formRegistro.get('nombreEmpresa')?.errors?.['required']">
+                        El nombre de la empresa es obligatorio
+                    </span>
+
+                    <span *ngIf="formRegistro.get('nombreEmpresa')?.errors?.['maxlength']">
+                        Máximo 25 caracteres
+                    </span>
+
+                </small>
             </div>
-            <button class="btn-volver" routerLink="/landing">Volver</button>
-            <button class="btn-siguiente" type="submit">Siguiente</button>
+
+            <!-- DNI -->
+            <div class="input-group">
+                <label>DNI (*)</label>
+                <input formControlName="dniUsuario" type="text" placeholder="12345678A" required>
+
+                <small class="error"
+                    *ngIf="formRegistro.get('dniUsuario')?.touched && formRegistro.get('dniUsuario')?.invalid">
+
+                    <span *ngIf="formRegistro.get('dniUsuario')?.errors?.['required']">
+                        El DNI es obligatorio
+                    </span>
+
+                    <span>
+                        <span *ngIf="formRegistro.get('dniUsuario')?.errors?.['pattern']">
+                            Formato inválido (8 números seguidos de una letra mayúscula)
+                        </span>
+                    </span>
+
+                </small>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="input-group">
+                <label>EMAIL DE TRABAJO (*)</label>
+                <input formControlName="email" type="email" placeholder="juan.perez@techsolutions.com" required>
+
+                <small class="error"
+                    *ngIf="formRegistro.get('email')?.touched && formRegistro.get('email')?.invalid">
+
+                    <span *ngIf="formRegistro.get('email')?.errors?.['email']">
+                        Email inválido
+                    </span>
+
+                    <span *ngIf="formRegistro.get('email')?.errors?.['required']">
+                        El email es obligatorio
+                    </span>
+
+                </small>
+            </div>
+
+            <!-- CONTRASEÑA -->
+            <div class="input-group">
+                <label>CONTRASEÑA (*)</label>
+                <input formControlName="contrasena" type="password" placeholder="••••••••" required>
+
+                <small class="error"
+                    *ngIf="formRegistro.get('contrasena')?.touched && formRegistro.get('contrasena')?.invalid">
+
+                    <span *ngIf="formRegistro.get('contrasena')?.errors?.['minlength']">
+                        Mínimo 6 caracteres
+                    </span>
+
+                    <span *ngIf="formRegistro.get('contrasena')?.errors?.['required']">
+                        La contraseña es obligatoria
+                    </span>
+
+                    <span *ngIf="formRegistro.get('contrasena')?.errors?.['maxlength']">
+                        Máximo 100 caracteres
+                    </span>
+
+                    <span *ngIf="formRegistro.get('contrasena')?.errors?.['pattern']">
+                        Debe contener mayúscula, minúscula y número
+                    </span>
+
+                </small>
+            </div>
+
+            <!-- BOTONES -->
+            <button class="btn-volver" routerLink="/landing" type="button">
+                Volver
+            </button>
+
+            <button class="btn-siguiente" type="submit">
+                Siguiente
+            </button>
+
             <p class="terms">
                 Haciendo click en "Siguiente", aceptas nuestros
                 <a href="#">Términos de Servicio</a> y
                 <a href="#">Política de Privacidad</a>
             </p>
+
         </form>
     </div>
 </div>

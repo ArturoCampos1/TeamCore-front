@@ -2,7 +2,10 @@
 
     <!-- HEADER -->
     <div class="header">
-        <h2 routerLink="/landing">TeamCore</h2>
+        <div routerLink="/landing" class="header-title">
+            <img src="assets/teamcorelogo.png" width="60px" alt="Logo de TeamCore">
+            <h2>TeamCore</h2>
+        </div>
         <div>
             <button routerLink="/landing/inicio-sesion" class="btn-inicio">Inicio de Sesión</button>
             <button routerLink="/landing/registro" class="btn-registro">Registro</button>
@@ -13,7 +16,7 @@
     <div class="content-registro">
         <h3>Detalles de la compañía.</h3>
         <p>Completa los siguientes datos para crear tu empresa en TeamCore.</p>
-        <form class="form-registro">
+        <form class="form-registro" [formGroup]="formRegistro">
             <div class="steps">
                 <div class="step active">1</div>
                 <div class="line active"></div>
@@ -21,42 +24,46 @@
                 <div class="line"></div>
                 <div class="step">3</div>
             </div>
-            <div class="input-group img-logo">
-                <label>LOGO DE LA EMPRESA</label>
-                <input type="file" accept="image/*">
-            </div>
+
             <div class="row">
                 <div class="input-group">
                     <label>Nombre de Administrador</label>
-                    <input type="text" placeholder="Juan Pérez">
+                    <input readonly formControlName="nombreAdministrador" type="text" placeholder="Juan Pérez">
                 </div>
                 <div class="input-group">
                     <label>Nombre de la Empresa</label>
-                    <input type="text" placeholder="Tech Solutions S.A.">
+                    <input readonly formControlName="nombreEmpresa" type="text" placeholder="Tech Solutions S.A.">
                 </div>
             </div>
-            <!-- INPUTS FULL -->
-            <div class="input-group">
-                <label>EMAIL DE TRABAJO</label>
-                <input type="email" placeholder="juan.perez@techsolutions.com">
-            </div>
-            <div class="input-group">
-                <label>CONTRASEÑA</label>
-                <input type="password" disabled>
+            <div class="input-group img-logo">
+                <label>LOGO DE LA EMPRESA</label>
+                <input formControlName="logoEmpresa" type="file" accept="image/*">
             </div>
             <div class="row">
                 <div class="input-group">
                     <label>CIF</label>
-                    <input type="text" placeholder="A12345678">
+                    <input formControlName="cif" type="text" placeholder="A12345678">
+                
+                    <small class="error">
+                        <span *ngIf="formRegistro.get('cif')?.errors?.['pattern']">
+                            Formato inválido (Una letra seguida de 8 dígitos)
+                        </span>
+                    </small>
+
+                    <small class="error">
+                        <span *ngIf="formRegistro.get('cif')?.errors?.['maxlength']">
+                            El CIF no puede tener más de 9 caracteres
+                        </span>
+                    </small>
                 </div>
                 <div class="input-group">
                     <label>FECHA DE FUNDACIÓN</label>
-                    <input type="date" placeholder="17/05/2010">
+                    <input formControlName="fechaFundacion" required type="date" placeholder="17/05/2010">
                 </div>
             </div>
             <div class="input-group">
                 <label>Área de Trabajo</label>
-                <select>
+                <select formControlName="areaTrabajo">
                     <option disabled selected>Selecciona un área</option>
 
                     <option>Administración</option>
@@ -94,7 +101,7 @@
             </div>
 
                 <button class="btn-volver" routerLink="/landing/registro" type="submit">Volver</button>
-                <button class="btn-crear" routerLink="/landing/registroStep3" type="submit">Siguiente</button>
+                <button class="btn-crear" (click)="onSubmit()" type="button">Siguiente</button>
         </form>
     </div>
 </div>

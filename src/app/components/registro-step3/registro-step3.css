@@ -14,6 +14,11 @@
     z-index: 1000;
 }
 
+.header-title{
+    display: flex;
+    gap: 10px;
+}
+
 .header h2:hover {
     cursor: pointer;
 }
@@ -41,15 +46,15 @@
     transition: 0.3s;
 }
 
-/* Formulario de registro */
+/* Formulario de sedes */
 
 .content-registro {
     padding: 20px;
     display: flex;
-    flex-direction: column;
     margin: 0 auto;
+    width: 80%;
     justify-content: center;
-    width: 420px;
+    gap: 10%;
 }
 
 .content-registro h3 {
@@ -62,6 +67,17 @@
     color: #6b7280;
     font-size: 14px;
     margin-bottom: 30px;
+}
+
+.fichaActual{
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.formSede{
+    padding: 20px;
+    width: 600px;
+    border: 1px solid #e0e0e0;
 }
 
 .form-registro {

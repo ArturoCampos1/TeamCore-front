@@ -1,6 +1,6 @@
 export interface Empresa {
   idEmpresa?: number;
-  nombreEmpresa: string;
+  nombreEmpresa?: string;
   urlPhoto?: string;
   cif?: string;
   areaTrabajo?: string;
@@ -46,6 +46,12 @@ export interface Usuario {
 
   nominas?: Nomina[];
   roles?: Rol[];
+}
+
+export interface RegistroData {
+  usuario?: Usuario;
+  empresa?: Empresa;
+  sede?: Sede;
 }
 
 export interface Rol {

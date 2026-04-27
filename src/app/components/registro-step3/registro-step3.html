@@ -2,7 +2,10 @@
 
     <!-- HEADER -->
     <div class="header">
-        <h2 routerLink="/landing">TeamCore</h2>
+        <div routerLink="/landing" class="header-title">
+            <img src="assets/teamcorelogo.png" width="60px" alt="Logo de TeamCore">
+            <h2>TeamCore</h2>
+        </div>
         <div>
             <button routerLink="/landing/inicio-sesion" class="btn-inicio">Inicio de Sesión</button>
             <button routerLink="/landing/registro" class="btn-registro">Registro</button>
@@ -11,19 +14,27 @@
 
     <!-- FORMULARIO DE REGISTRO -->
     <div class="content-registro">
-        <h3>Sedes y oficinas.</h3>
-        <p>Introduce la información de tus sedes y oficinas.</p>
-        <form class="form-registro">
-            <div class="steps">
-                <div class="step active">1</div>
-                <div class="line active"></div>
-                <div class="step active">2</div>
-                <div class="line active"></div>
-                <div class="step active">3</div>
-            </div>
-            
-                <button class="btn-volver" routerLink="/landing/registroStep2" type="submit">Volver</button>
-                <button class="btn-crear" routerLink="/landing/" type="submit">Siguiente</button>
-        </form>
+        <div class="fichaActual">
+            <h3>Ficha de la Empresa Actual</h3>
+
+        </div>
+        <div class="formSede">
+
+            <h3>Sedes y oficinas.</h3>
+            <p>Introduce la información de tus sedes y oficinas.</p>
+            <form class="form-registro">
+                <div class="steps">
+                    <div class="step active">1</div>
+                    <div class="line active"></div>
+                    <div class="step active">2</div>
+                    <div class="line active"></div>
+                    <div class="step active">3</div>
+                </div>
+                
+                    <button class="btn-volver" routerLink="/landing/registroStep2" type="submit">Volver</button>
+                    <button class="btn-crear" routerLink="/landing/" type="submit">Siguiente</button>
+            </form>
+        </div>
+
     </div>
 </div>

@@ -18,6 +18,11 @@
     cursor: pointer;
 }
 
+.header-title{
+    display: flex;
+    gap: 10px;
+}
+
 .header button{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
