@@ -41,6 +41,9 @@ export class RegistroStep2 {
     this.formRegistro.patchValue({
       nombreAdministrador: registroData.usuario?.nombreUsuario || '',
       nombreEmpresa: registroData.empresa?.nombreEmpresa || '',
+      cif: registroData.empresa?.cif || '',
+      fechaFundacion: registroData.empresa?.fechaSalida || '',
+      areaTrabajo: registroData.empresa?.areaTrabajo || ''
     });
 
   }

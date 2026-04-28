@@ -16,14 +16,36 @@
     <div class="content-registro">
         <div class="fichaActual">
             <h3>Ficha de la Empresa Actual</h3>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
+                <ul class="lista-datos">
+                    <li>
+                        <p class="label">Nombre de la Compañía:</p>
+                        <span class="valor">{{ registroData.empresa?.nombreEmpresa }}</span>
+                    </li>
+                    <li>
+                        <p class="label">CIF:</p>
+                        <span class="valor">{{ registroData.empresa?.cif }}</span>
+                    </li>
+                    <li>
+                        <p class="label">Área de Trabajo:</p>
+                        <span class="valor">{{ registroData.empresa?.areaTrabajo }}</span>
+                    </li>
+                    <li>
+                        <p class="label">Fecha de Fundación:</p>
+                        <span class="valor">{{ registroData.empresa?.fechaSalida }}</span>
+                    </li>
+                    <li>
+                        <p class="label">Nombre de Usuario Administrador:</p>
+                        <span class="valor">{{ registroData.usuario?.nombreUsuario }}</span>
+                    </li>
+                    <li>
+                        <p class="label">DNI:</p>
+                        <span class="valor">{{ registroData.usuario?.dni }}</span>
+                    </li>
+                    <li>
+                        <p class="label">Correo Electrónico:</p>
+                        <span class="valor">{{ registroData.usuario?.correo }}</span>
+                    </li>
+                </ul>
         </div>
         <div class="formSede">
 

@@ -178,17 +178,6 @@
     cursor: pointer;
 }
 
-.terms {
-    font-size: 12px;
-    text-align: center;
-    color: #6b7280;
-}
-
-.terms a {
-    color: #5D5FEF;
-    text-decoration: none;
-}
-
 .steps {
   display: flex;
   margin: 0 auto;

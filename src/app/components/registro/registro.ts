@@ -15,6 +15,7 @@ import { RegistroCompartir } from '../../services/registro-compartir';
 export class Registro {
 
   formRegistro: FormGroup;
+  registroData!: RegistroData;
 
   constructor(
     private registroCompartir: RegistroCompartir,
@@ -32,16 +33,34 @@ export class Registro {
   }
 
   ngOnInit() {
-    const registroData = this.registroCompartir.getRegistroData();
+    this.registroData = this.registroCompartir.getRegistroData();
 
-    if (registroData && registroData.usuario && registroData.empresa  ) {
+    if (this.registroData && this.registroData.usuario && this.registroData.empresa  ) {
       this.formRegistro.patchValue({
-        nombreAdministrador: registroData.usuario.nombreUsuario,
-        nombreEmpresa: registroData.empresa.nombreEmpresa,
-        dniUsuario: registroData.usuario.dni,
-        email: registroData.usuario.correo,
-        contrasena: registroData.usuario.password
+        nombreAdministrador: this.registroData.usuario.nombreUsuario,
+        nombreEmpresa: this.registroData.empresa.nombreEmpresa,
+        dniUsuario: this.registroData.usuario.dni,
+        email: this.registroData.usuario.correo,
+        contrasena: this.registroData.usuario.password
       });
+    }
+  }
+
+  onClickVolver() {
+    const datosVacios =
+      !this.registroData ||
+      Object.keys(this.registroData).length === 0;
+
+    if (datosVacios) {
+      this.router.navigate(['/landing']);
+      return;
+    }
+
+    const confirmar = confirm("Si vuelves se perderán todos los datos. ¿Deseas continuar?");
+  
+    this.registroCompartir.setRegistroData(this.registroData = {});
+    if (confirmar) {
+      this.router.navigate(['/landing']);
     }
   }
 
