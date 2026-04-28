@@ -60,7 +60,7 @@ export class RegistroStep2 {
       };
 
       this.registroCompartir.updateRegistroData(updatedData);
-
+      console.log('Datos de registro actualizados:', this.registroCompartir.getRegistroData());
       this.router.navigate(['/landing/registroStep3']);
 
       } else {

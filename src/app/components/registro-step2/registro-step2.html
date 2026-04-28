@@ -48,9 +48,7 @@
                         <span *ngIf="formRegistro.get('cif')?.errors?.['pattern']">
                             Formato inválido (Una letra seguida de 8 dígitos)
                         </span>
-                    </small>
 
-                    <small class="error">
                         <span *ngIf="formRegistro.get('cif')?.errors?.['maxlength']">
                             El CIF no puede tener más de 9 caracteres
                         </span>

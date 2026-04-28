@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import ScrollReveal from 'scrollreveal';
+import { EmpresaService } from '../../services/empresa-service';
 
 @Component({
   selector: 'app-landing',
@@ -10,8 +11,24 @@ import ScrollReveal from 'scrollreveal';
 })
 export class Landing {
 
+  constructor(
+    private empresaService: EmpresaService
+  ) {}
+  
   ngOnInit() {
 
+    this.empresaService.obtenerNumEmpresas().subscribe(num => {
+      const numEmpresasElement = document.querySelector('.content-1-numEmpresas');
+      if (numEmpresasElement) {
+        numEmpresasElement.textContent = `${num} empresas`;
+      }      
+    });
+
+    this.scrollReveal();
+
+  }
+
+  scrollReveal() {
     const sr = ScrollReveal({
       reset: false, // cambia a true si quieres repetir animaciones
       viewFactor: 0.2
@@ -56,6 +73,5 @@ export class Landing {
       duration: 700,
       easing: 'ease-in-out'
     });
-
   }
 }
