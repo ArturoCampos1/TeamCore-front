@@ -55,6 +55,7 @@
     width: 80%;
     justify-content: center;
     gap: 10%;
+    align-items: flex-start; /* ← Evita que los hijos se estiren en altura */
 }
 
 .content-registro h3 {
@@ -64,15 +65,15 @@
 }
 
 .fichaActual {
-  width: 460px;
-  border-radius: 16px;
-  background: #ffffff;
+    width: 460px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(93, 95, 239, 0.25),
+                0 4px 10px rgba(93, 95, 239, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    align-self: flex-start; /* ← No crece aunque el de la derecha sea más alto */
+    height: 550px;
 
-  box-shadow: 0 10px 25px rgba(93, 95, 239, 0.25),
-              0 4px 10px rgba(93, 95, 239, 0.15);
-
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin: 20px;
 }
 
 .fichaActual h3{
@@ -101,7 +102,7 @@
 }
 .label{
     font-weight: 600;
-    color: #5D5FEF;
+    color: #007bff;
 }
 
 .valor{
@@ -109,21 +110,53 @@
     font-weight: 500;
 }
 
-.formSede{
+.formSede {
     padding: 20px;
     width: 800px;
     border-radius: 16px;
-
     box-shadow: 0 10px 25px rgba(93, 95, 239, 0.25),
-              0 4px 10px rgba(93, 95, 239, 0.15);
-
-    margin: 20px;
+                0 4px 10px rgba(93, 95, 239, 0.15);
+    height: 550px;
+    overflow-y: auto;    /* activa scroll vertical */
 }
-
 .form-registro {
     display: flex;
     flex-direction: column;
     gap: 18px;
+}
+
+.sedes{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sedes h4{
+    color: #007bff;
+}
+
+.sedes label{
+    font-weight: bold;
+}
+
+.add{
+    transition: 0.5s;
+}
+
+.add:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    rotate: calc(30deg);
+}
+
+.remove{
+    transition: 0.5s;
+}
+
+.remove:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
 }
 
 .btn-crear {
@@ -135,6 +168,50 @@
     color: white;
     font-weight: 600;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.18s ease;
+    box-shadow: 0 2px 8px rgba(93, 95, 239, 0.25);
+}
+
+.btn-crear::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.28) 50%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+}
+
+.btn-crear:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 8px 24px rgba(93, 95, 239, 0.45),
+        0 2px 8px rgba(93, 95, 239, 0.2);
+}
+
+.btn-crear:hover::before {
+    animation: shimmer 0.55s ease forwards;
+}
+
+.btn-crear:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 2px 8px rgba(93, 95, 239, 0.25);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+@keyframes shimmer {
+    0%   { left: -75%; }
+    100% { left: 125%; }
 }
 
 .btn-volver {

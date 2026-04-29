@@ -19,9 +19,10 @@ export class Landing {
 
     this.empresaService.obtenerNumEmpresas().subscribe(num => {
       const numEmpresasElement = document.querySelector('.content-1-numEmpresas');
+
       if (numEmpresasElement) {
         numEmpresasElement.textContent = `${num} empresas`;
-      }      
+      }
     });
 
     this.scrollReveal();

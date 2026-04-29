@@ -51,7 +51,7 @@
 
             <h3>Sedes y oficinas.</h3>
             <p>Introduce la información de tus sedes y oficinas.</p>
-            <form class="form-registro">
+            <form [formGroup]="sedeForm" (ngSubmit)="onSubmit()" class="form-registro">
                 <div class="steps">
                     <div class="step active">1</div>
                     <div class="line active"></div>
@@ -59,9 +59,28 @@
                     <div class="line active"></div>
                     <div class="step active">3</div>
                 </div>
-                
-                    <button class="btn-volver" routerLink="/landing/registroStep2" type="submit">Volver</button>
-                    <button class="btn-crear" routerLink="/landing/" type="submit">Siguiente</button>
+
+                    <img class="add" (click)="agregarSede()" width="30px" src="assets/add.svg" alt="add">
+                      <div formArrayName="sedes">
+                        <div class="sedes" *ngFor="let sede of sedes.controls; let i = index" [formGroupName]="i">
+
+                        <h4>Sede {{ i + 1 }}</h4>
+                        
+                        <label for="edificio">Nombre del Edificio/Sede:</label>
+                        <input formControlName="nombreSede" placeholder="Edificio Torres de Hércules">
+                        <label for="pais">País:</label>
+                        <input formControlName="pais" placeholder="España">
+                        <label for="edificio">Ciudad:</label>
+                        <input formControlName="ciudad" placeholder="Sevilla">
+                        <label for="codPostal">Código Postal:</label>
+                        <input formControlName="codPostal" placeholder="41007">
+                        <label for="edificio">Dirección:</label>
+                        <input formControlName="direccion" placeholder="C/ Juán Garcia, Edificio 3, Planta 5, Puerta 2">      
+                        <img class="remove" (click)="eliminarSede(i)" width="30px" src="assets/remove.svg" alt="remove">
+                        </div>
+                    </div>
+                    <button class="btn-volver" routerLink="/landing/registroStep2" type="button">Volver</button>
+                    <button class="btn-crear" type="submit">Siguiente</button>
             </form>
         </div>
 

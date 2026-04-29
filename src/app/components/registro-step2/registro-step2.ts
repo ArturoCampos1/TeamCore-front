@@ -20,14 +20,14 @@ export class RegistroStep2 {
         private fb: FormBuilder,
         private registroCompartir: RegistroCompartir
   ) {
-    this.formRegistro = this.fb.group({
-        nombreAdministrador: [''],
-        nombreEmpresa: [''],
-        logoEmpresa: [null],
-        cif: ['', [Validators.maxLength(9), Validators.pattern(/[A-Za-z]\d{8}/)]],
-        fechaFundacion: [''],
-        areaTrabajo: ['', Validators.required]
-    });
+        this.formRegistro = this.fb.group({
+          nombreAdministrador: [''],
+          nombreEmpresa: [''],
+          logoEmpresa: [null],
+          cif: ['', [Validators.required, Validators.maxLength(9), Validators.pattern(/^[A-HJ-NP-SUVW]\d{7}[0-9A-J]$/)]],
+          fechaFundacion: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
+          areaTrabajo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]]
+        });
   }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class RegistroStep2 {
 
     if (!registroData || !registroData.usuario || !registroData.empresa) {
       // Si no hay datos de registro, redirige al paso 1
-      this.router.navigate(['/landing/registro']);
+      //this.router.navigate(['/landing/registro']);
     }
 
     this.formRegistro.patchValue({
@@ -45,6 +45,8 @@ export class RegistroStep2 {
       fechaFundacion: registroData.empresa?.fechaSalida || '',
       areaTrabajo: registroData.empresa?.areaTrabajo || ''
     });
+
+    this.formRegistro.markAsUntouched();
 
   }
 

@@ -43,8 +43,13 @@
                 <div class="input-group">
                     <label>CIF</label>
                     <input formControlName="cif" type="text" placeholder="A12345678">
-                
+
                     <small class="error">
+
+                       <span *ngIf="formRegistro.get('cif')?.errors?.['required'] && formRegistro.get('cif')?.touched">
+                            El cif es obligatorio
+                        </span>
+
                         <span *ngIf="formRegistro.get('cif')?.errors?.['pattern']">
                             Formato inválido (Una letra seguida de 8 dígitos)
                         </span>
@@ -56,7 +61,17 @@
                 </div>
                 <div class="input-group">
                     <label>FECHA DE FUNDACIÓN</label>
-                    <input formControlName="fechaFundacion" required type="date" placeholder="17/05/2010">
+                    <input formControlName="fechaFundacion" required type="date">
+
+                    <small class="error">
+                        <span *ngIf="formRegistro.get('fechaFundacion')?.errors?.['required'] && formRegistro.get('fechaFundacion')?.touched">
+                            La fecha de fundación es obligatoria
+                        </span>
+
+                        <span *ngIf="formRegistro.get('fechaFundacion')?.errors?.['pattern']">
+                            Formato de fecha inválido (YYYY-MM-DD)
+                        </span>
+                    </small>
                 </div>
             </div>
             <div class="input-group">
@@ -96,6 +111,12 @@
                     <option>Relaciones Públicas</option>
                     <option>Formación</option>
                 </select>
+
+                <small class="error">
+                    <span *ngIf="formRegistro.get('areaTrabajo')?.errors?.['required'] && formRegistro.get('areaTrabajo')?.touched">
+                        El área es obligatoria
+                    </span>
+                </small>
             </div>
 
                 <button class="btn-volver" routerLink="/landing/registro" type="submit">Volver</button>
