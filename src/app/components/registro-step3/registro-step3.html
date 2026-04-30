@@ -6,6 +6,10 @@
             <img src="assets/teamcorelogo.png" width="60px" alt="Logo de TeamCore">
             <h2>TeamCore</h2>
         </div>
+        <div class="toast" [class.show]="mostrarToast" [class.error]="tipoToast === 'error'">
+        {{ mensaje }}
+        <span class="close" (click)="mostrarToast = false">×</span>
+        </div>
         <div>
             <button routerLink="/landing/inicio-sesion" class="btn-inicio">Inicio de Sesión</button>
             <button routerLink="/landing/registro" class="btn-registro">Registro</button>
@@ -59,25 +63,57 @@
                     <div class="line active"></div>
                     <div class="step active">3</div>
                 </div>
-
                     <img class="add" (click)="agregarSede()" width="30px" src="assets/add.svg" alt="add">
                       <div formArrayName="sedes">
                         <div class="sedes" *ngFor="let sede of sedes.controls; let i = index" [formGroupName]="i">
 
-                        <h4>Sede {{ i + 1 }}</h4>
-                        
-                        <label for="edificio">Nombre del Edificio/Sede:</label>
-                        <input formControlName="nombreSede" placeholder="Edificio Torres de Hércules">
-                        <label for="pais">País:</label>
-                        <input formControlName="pais" placeholder="España">
-                        <label for="edificio">Ciudad:</label>
-                        <input formControlName="ciudad" placeholder="Sevilla">
-                        <label for="codPostal">Código Postal:</label>
-                        <input formControlName="codPostal" placeholder="41007">
-                        <label for="edificio">Dirección:</label>
-                        <input formControlName="direccion" placeholder="C/ Juán Garcia, Edificio 3, Planta 5, Puerta 2">      
-                        <img class="remove" (click)="eliminarSede(i)" width="30px" src="assets/remove.svg" alt="remove">
-                        </div>
+                            <h4>Sede {{ i + 1 }}</h4>
+
+                            <label>Nombre del Edificio/Sede:</label>
+                            <input formControlName="nombreSede" placeholder="Edificio Torres de Hércules">
+                            <small class="error"
+                                *ngIf="(sede.get('nombreSede')?.touched ) && sede.get('nombreSede')?.hasError('required')">
+                                El nombre de la sede es obligatorio
+                            </small>
+
+                            <label>País:</label>
+                            <input formControlName="pais" placeholder="España">
+                            <small class="error"
+                                *ngIf="(sede.get('pais')?.touched  ) && sede.get('pais')?.hasError('required')">
+                                El país es obligatorio
+                            </small>
+
+                            <label>Ciudad:</label>
+                            <input formControlName="ciudad" placeholder="Sevilla">
+                            <small class="error"
+                                *ngIf="(sede.get('ciudad')?.touched  ) && sede.get('ciudad')?.hasError('required')">
+                                La ciudad es obligatoria
+                            </small>
+                            <small class="error"
+                                *ngIf="(sede.get('ciudad')?.touched  ) && sede.get('ciudad')?.hasError('pattern')">
+                                Solo se permiten letras
+                            </small>
+
+                            <label>Código Postal:</label>
+                            <input formControlName="codPostal" placeholder="41007">
+                            <small class="error"
+                                *ngIf="(sede.get('codPostal')?.touched  ) && sede.get('codPostal')?.hasError('required')">
+                                El código postal es obligatorio
+                            </small>
+                            <small class="error"
+                                *ngIf="(sede.get('codPostal')?.touched  ) && sede.get('codPostal')?.hasError('pattern')">
+                                Código postal inválido (formato europeo)
+                            </small>
+
+                            <label>Dirección:</label>
+                            <input formControlName="direccion" placeholder="C/ Juan García, Edificio 3, Planta 5, Puerta 2">
+                            <small class="error"
+                                *ngIf="(sede.get('direccion')?.touched  ) && sede.get('direccion')?.hasError('required')">
+                                La dirección es obligatoria
+                            </small>
+
+                            <img class="remove" (click)="eliminarSede(i)" width="30px" src="assets/remove.svg" alt="remove">
+                            </div>
                     </div>
                     <button class="btn-volver" routerLink="/landing/registroStep2" type="button">Volver</button>
                     <button class="btn-crear" type="submit">Siguiente</button>

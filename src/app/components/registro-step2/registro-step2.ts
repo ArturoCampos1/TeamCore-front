@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { RegistroCompartir } from '../../services/registro-compartir';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 
@@ -25,9 +25,30 @@ export class RegistroStep2 {
           nombreEmpresa: [''],
           logoEmpresa: [null],
           cif: ['', [Validators.required, Validators.maxLength(9), Validators.pattern(/^[A-HJ-NP-SUVW]\d{7}[0-9A-J]$/)]],
-          fechaFundacion: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
+          fechaFundacion: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/), this.fechaNoValidaValidator()]],
           areaTrabajo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]]
         });
+  }
+
+  fechaNoValidaValidator(): ValidatorFn {
+    return (control: AbstractControl) => {
+      const value = control.value;
+
+      if (!value) return null;
+
+      const year = new Date(value).getFullYear();
+      const currentYear = new Date().getFullYear();
+
+      if (year < 1500) {
+        return { fechaMuyAntigua: true };
+      }
+
+      if (year > currentYear) {
+        return { fechaFutura: true };
+      }
+
+      return null;
+    };
   }
 
   ngOnInit() {
@@ -35,7 +56,7 @@ export class RegistroStep2 {
 
     if (!registroData || !registroData.usuario || !registroData.empresa) {
       // Si no hay datos de registro, redirige al paso 1
-      //this.router.navigate(['/landing/registro']);
+      this.router.navigate(['/landing/registro']);
     }
 
     this.formRegistro.patchValue({

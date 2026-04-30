@@ -50,8 +50,8 @@
                             El cif es obligatorio
                         </span>
 
-                        <span *ngIf="formRegistro.get('cif')?.errors?.['pattern']">
-                            Formato inválido (Una letra seguida de 8 dígitos)
+                        <span *ngIf="formRegistro.get('cif')?.hasError('pattern') && formRegistro.get('cif')?.touched">
+                            Formato de CIF incorrecto
                         </span>
 
                         <span *ngIf="formRegistro.get('cif')?.errors?.['maxlength']">
@@ -64,6 +64,11 @@
                     <input formControlName="fechaFundacion" required type="date">
 
                     <small class="error">
+
+                        <span *ngIf="formRegistro.get('fechaFundacion')?.hasError('fechaMuyAntigua') || formRegistro.get('fechaFundacion')?.hasError('fechaFutura')">
+                            La fecha de fundación no es válida
+                        </span>
+                        
                         <span *ngIf="formRegistro.get('fechaFundacion')?.errors?.['required'] && formRegistro.get('fechaFundacion')?.touched">
                             La fecha de fundación es obligatoria
                         </span>

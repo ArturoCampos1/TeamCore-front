@@ -12,11 +12,4 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  createUsuario(usuario: Usuario): Observable<Usuario> {
-    usuario.puesto = 'Administrador';
-    usuario.empleadoActivo = true;
-    usuario.fechaEntrada = new Date().toISOString().split('T')[0];
-    return this.http.post<Usuario>(this.apiUrl, usuario);
-  }
-
 }

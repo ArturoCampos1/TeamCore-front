@@ -3,12 +3,12 @@ import { Router, RouterLink } from '@angular/router';
 import { RegistroCompartir } from '../../services/registro-compartir';
 import { RegistroData } from '../../models/models';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { RegistroCompleto } from '../../services/registro-completo';
 
 @Component({
   selector: 'app-registro-step3',
-  imports: [RouterLink, ReactiveFormsModule, NgFor],
+  imports: [RouterLink, ReactiveFormsModule, NgIf, NgFor],
   templateUrl: './registro-step3.html',
   styleUrl: './registro-step3.css',
 })
@@ -28,15 +28,15 @@ export class RegistroStep3 {
       });
     }
 
-    crearSede(): FormGroup {
-      return this.fb.group({
-        nombreSede: ['', Validators.required],
-        direccion: ['', Validators.required],
-        pais: ['', Validators.required],
-        ciudad: ['', Validators.required],
-        codPostal: ['', Validators.required],
-      });
-    }
+  crearSede(): FormGroup {
+    return this.fb.group({
+      nombreSede: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      direccion: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
+      pais: ['', [Validators.required]],
+      ciudad: ['', [Validators.required, Validators.pattern(/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s]+$/)]],
+      codPostal: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9\s\-]{3,10}$/)]],
+    });
+  }
 
     get sedes(): FormArray {
       return this.sedeForm.get('sedes') as FormArray;
@@ -60,13 +60,14 @@ export class RegistroStep3 {
       };
 
       this.registroCompartir.updateRegistroData(updatedData);
-    }
-
-    this.registroCompleto.registrar(this.registroCompartir.getRegistroData())
-      .subscribe({
-      next: () => console.log('Registro OK'),
-      error: (err) => console.error(err)
-    });
+      
+      this.registroCompleto.registrar(this.registroCompartir.getRegistroData())
+      .subscribe();
+      this.registroCompartir.setRegistroData(this.registroData = {});
+      this.router.navigate(['/landing/inicio-sesion']);
+    } else{
+      this.sedeForm.markAsTouched();
+      this.mostrarToastMsg('Revisa los campos', 'error', 1);    }
 
   }
 
@@ -75,9 +76,23 @@ export class RegistroStep3 {
 
     if (!this.registroData || !this.registroData.usuario || !this.registroData.empresa) {
       // Si no hay datos de registro, redirige al paso 1
-      //this.router.navigate(['/landing/registro']);
+      this.router.navigate(['/landing/registro']);
     }
 
+  }
+
+  mensaje: string = '';
+  mostrarToast: boolean = false;
+  tipoToast: 'success' | 'error' = 'error';
+
+  mostrarToastMsg(texto: string, tipo: 'success' | 'error' = 'error', tiempo: number = 2500) {
+    this.mensaje = texto;
+    this.tipoToast = tipo;
+    this.mostrarToast = true;
+
+    setTimeout(() => {
+      this.mostrarToast = false;
+    }, tiempo);
   }
 
 }

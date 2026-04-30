@@ -48,6 +48,12 @@
 
 /* Formulario de sedes */
 
+.error{
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
 .content-registro {
     padding: 20px;
     display: flex;
@@ -256,4 +262,45 @@
 
 .line.active {
   background-color: #007bff;
+}
+
+/*TOAST*/
+.toast {
+  display: flex;
+  justify-content: space-around;
+  width: 220px;
+  margin: 0 auto;
+  align-items: center;
+  padding: 18px 18px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+vertical-align: middle;
+
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  background: #e74c3c;
+}
+
+.toast.success {
+  background: #2ecc71;
+}
+
+.close{
+    font-size: 20px;
+}
+
+.close:hover{
+    cursor: pointer;
 }
