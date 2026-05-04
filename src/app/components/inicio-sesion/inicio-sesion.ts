@@ -11,6 +11,8 @@ import { AuthService } from '../../services/auth-service';
 })
 export class InicioSesion {
 
+  mensajeError: string = '';
+
   formInicioSesion : FormGroup;
 
   constructor(
@@ -35,24 +37,12 @@ export class InicioSesion {
         },
         error: (err) => {
           console.error('Error al iniciar sesión:', err);
-          this.mostrarToastMsg('Credenciales incorrectas. Inténtalo de nuevo.', 'error');
+          this.mensajeError = 'Usuario no encontrado o contraseña incorrecta';
         }
       });
+    } else{
+      this.mensajeError = 'Rellena los datos con coherencia';
     }
-  }
-
-  mensaje: string = '';
-  mostrarToast: boolean = false;
-  tipoToast: 'success' | 'error' = 'error';
-
-  mostrarToastMsg(texto: string, tipo: 'success' | 'error' = 'error', tiempo: number = 2500) {
-    this.mensaje = texto;
-    this.tipoToast = tipo;
-    this.mostrarToast = true;
-
-    setTimeout(() => {
-      this.mostrarToast = false;
-    }, tiempo);
   }
 
 }

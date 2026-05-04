@@ -6,6 +6,7 @@ import { InicioSesion } from './components/inicio-sesion/inicio-sesion';
 import { Registro } from './components/registro/registro';
 import { RegistroStep2 } from './components/registro-step2/registro-step2';
 import { RegistroStep3 } from './components/registro-step3/registro-step3';
+import { Dashboard } from './components/dashboard/dashboard';
 
 export const routes: Routes = [
 
@@ -34,7 +35,7 @@ export const routes: Routes = [
     path: '',
     component: MainLayout,
     children: [
-      // Aquí irían las rutas de la app, por ejemplo:
+      { path: 'dashboard', component: Dashboard },
       ]
   }
 
