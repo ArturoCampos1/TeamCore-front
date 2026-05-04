@@ -65,10 +65,14 @@
 
                     <small class="error">
 
-                        <span *ngIf="formRegistro.get('fechaFundacion')?.hasError('fechaMuyAntigua') || formRegistro.get('fechaFundacion')?.hasError('fechaFutura')">
-                            La fecha de fundación no es válida
+                        <span *ngIf="formRegistro.get('fechaFundacion')?.hasError('fechaMuyAntigua')">
+                            La fecha de fundación no es válida. Muy antigua.
                         </span>
-                        
+
+                        <span *ngIf="formRegistro.get('fechaFundacion')?.hasError('fechaFutura')">
+                            La fecha de fundación no puede ser futura.
+                        </span>
+
                         <span *ngIf="formRegistro.get('fechaFundacion')?.errors?.['required'] && formRegistro.get('fechaFundacion')?.touched">
                             La fecha de fundación es obligatoria
                         </span>

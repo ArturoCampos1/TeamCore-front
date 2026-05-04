@@ -76,3 +76,10 @@ export interface Permiso {
   nombrePermiso: string;
   descripcion: string;
 }
+
+export interface JwtResponse {
+  token: string;
+  nombre: string;
+  dni: string;
+  rol: string;
+}

@@ -32,7 +32,7 @@ export class RegistroStep3 {
     return this.fb.group({
       nombreSede: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       direccion: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
-      pais: ['', [Validators.required]],
+      pais: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       ciudad: ['', [Validators.required, Validators.pattern(/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s]+$/)]],
       codPostal: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9\s\-]{3,10}$/)]],
     });

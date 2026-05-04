@@ -71,27 +71,43 @@
 
                             <label>Nombre del Edificio/Sede:</label>
                             <input formControlName="nombreSede" placeholder="Edificio Torres de Hércules">
-                            <small class="error"
-                                *ngIf="(sede.get('nombreSede')?.touched ) && sede.get('nombreSede')?.hasError('required')">
-                                El nombre de la sede es obligatorio
+                            <small class="error">
+
+                                <span *ngIf="(sede.get('nombreSede')?.touched  ) && sede.get('nombreSede')?.hasError('required')">
+                                    El nombre de la sede es obligatorio
+                                </span>
+
+                                <span *ngIf="(sede.get('nombreSede')?.touched  ) && sede.get('nombreSede')?.hasError('minlength')">
+                                    Mínimo 3 caracteres
+                                </span>
+
                             </small>
 
+                                
                             <label>País:</label>
                             <input formControlName="pais" placeholder="España">
-                            <small class="error"
-                                *ngIf="(sede.get('pais')?.touched  ) && sede.get('pais')?.hasError('required')">
-                                El país es obligatorio
+                            <small class="error">
+                                <span *ngIf="(sede.get('pais')?.touched  ) && sede.get('pais')?.hasError('required')">
+                                    El país es obligatorio
+                                </span>
+
+                                <span *ngIf="(sede.get('pais')?.touched  ) && sede.get('pais')?.hasError('minlength')">
+                                    Mínimo 3 caracteres
+                                </span>
                             </small>
 
                             <label>Ciudad:</label>
                             <input formControlName="ciudad" placeholder="Sevilla">
-                            <small class="error"
-                                *ngIf="(sede.get('ciudad')?.touched  ) && sede.get('ciudad')?.hasError('required')">
-                                La ciudad es obligatoria
-                            </small>
-                            <small class="error"
-                                *ngIf="(sede.get('ciudad')?.touched  ) && sede.get('ciudad')?.hasError('pattern')">
-                                Solo se permiten letras
+                            <small class="error">
+
+                                <span *ngIf="(sede.get('ciudad')?.touched  ) && sede.get('ciudad')?.hasError('required')">
+                                    La ciudad es obligatoria
+                                </span>
+
+                                <span *ngIf="(sede.get('ciudad')?.touched  ) && sede.get('ciudad')?.hasError('minlength')">
+                                    Mínimo 3 caracteres
+                                </span>
+
                             </small>
 
                             <label>Código Postal:</label>

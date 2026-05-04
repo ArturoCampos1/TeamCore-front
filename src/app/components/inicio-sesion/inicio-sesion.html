@@ -17,22 +17,22 @@
         <h3 class="title">¡Bienvenido de vuelta!</h3>
         <p>Introduce tus creedenciales para acceder a <span class="teamcore">TeamCore</span></p>
 
-        <form class="formularioInicio">
+        <form class="formularioInicio" [formGroup]="formInicioSesion">
 
             <div class="input-group">
                 <label for="dni">DNI </label>
-                <input type="text" placeholder="12345678A">
+                <input formControlName="dni" type="text" placeholder="12345678A">
                 <small class="error"></small>
             </div>
 
             <div class="input-group">
                 <label for="contrasena">Contraseña </label>
-                <input type="password" placeholder="••••••••">
+                <input formControlName="contrasena" type="password" placeholder="••••••••">
                 <small class="error"></small>
             </div>
             
             <button routerLink="/landing" class="btn-volver" type="button">Volver</button>
-            <button class="btn-siguiente" type="submit">Iniciar Sesión</button>
+            <button (click)="onSubmit()" class="btn-siguiente" type="submit">Iniciar Sesión</button>
         </form>
      </div>
     
