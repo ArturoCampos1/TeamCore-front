@@ -18,7 +18,8 @@ export class AuthService {
     return this.http.post<JwtResponse>(`${this.apiUrl}/login`, { dni, password }).pipe(
       tap((respuesta: JwtResponse) => {
         localStorage.setItem('token', respuesta.token);
-        localStorage.setItem('nombre', respuesta.nombre);
+        localStorage.setItem('dni', respuesta.dni);
+        localStorage.setItem('contrasena', respuesta.contrasena);
         localStorage.setItem('rol', respuesta.rol);
       })
     );
@@ -26,7 +27,25 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/landing']);
+  }
+
+  getUsuarioLogado(): JwtResponse | null {
+    const token = localStorage.getItem('token');
+    const dni = localStorage.getItem('dni');
+    const contrasena = localStorage.getItem('contrasena');
+    const rol = localStorage.getItem('rol');
+
+    let usuario: JwtResponse | null = null;
+    if (token && dni && contrasena && rol) {
+      usuario = {
+        token,
+        dni,
+        contrasena,
+        rol
+      };
+    }
+    return usuario;
   }
 
   getToken(): string | null {
@@ -37,8 +56,8 @@ export class AuthService {
     return localStorage.getItem('rol');
   }
 
-  getNombre(): string | null {
-    return localStorage.getItem('nombre');
+  getDni(): string | null {
+    return localStorage.getItem('dni');
   }
 
   estaLogueado(): boolean {

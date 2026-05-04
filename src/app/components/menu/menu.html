@@ -1,0 +1,38 @@
+<nav class="sidebar">
+
+  <div class="sidebar-brand">
+    <img class="brand-icon" src="assets/teamcorelogo.png" alt="Logo">
+    <div>
+      <div class="brand-name">TeamCore</div>
+    </div>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li class="nav-section-label">General</li>
+    <li class="nav-item active">Dashboard</li>
+    <li class="nav-item">Notificaciones</li>
+    <li class="nav-item">Mi perfil</li>
+
+    <div class="nav-divider"></div>
+    <li class="nav-section-label">Gestión</li>
+    <li class="nav-item">Empleados</li>
+    <li class="nav-item">Tareas</li>
+    <li class="nav-item">Vacaciones</li>
+
+    <div class="nav-divider"></div>
+    <li class="nav-section-label">Sistema</li>
+    <li class="nav-item">Configuración</li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <div class="user-row">
+      <div class="avatar">AU</div>
+      <div>
+        <div class="user-name">{{ usuarioLogado?.dni }}</div>
+        <div class="user-role">{{ usuarioLogado?.rol }}</div>
+      </div>
+    </div>
+    <button (click)="onLogout()" class="signout-btn">Cerrar sesión</button>
+  </div>
+
+</nav>
