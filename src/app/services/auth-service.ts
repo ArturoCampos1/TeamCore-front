@@ -17,10 +17,11 @@ export class AuthService {
   login(dni: string, password: string): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(`${this.apiUrl}/login`, { dni, password }).pipe(
       tap((respuesta: JwtResponse) => {
-        localStorage.setItem('token', respuesta.token);
-        localStorage.setItem('dni', respuesta.dni);
-        localStorage.setItem('contrasena', respuesta.contrasena);
-        localStorage.setItem('rol', respuesta.rol);
+          //console.log('Respuesta del back:', respuesta);
+          localStorage.setItem('token', respuesta.token);
+          localStorage.setItem('dni', respuesta.dni);
+          localStorage.setItem('nombre', respuesta.nombre);
+          localStorage.setItem('rol', respuesta.rol);
       })
     );
   }
@@ -33,15 +34,15 @@ export class AuthService {
   getUsuarioLogado(): JwtResponse | null {
     const token = localStorage.getItem('token');
     const dni = localStorage.getItem('dni');
-    const contrasena = localStorage.getItem('contrasena');
+    const nombre = localStorage.getItem('nombre');
     const rol = localStorage.getItem('rol');
 
     let usuario: JwtResponse | null = null;
-    if (token && dni && contrasena && rol) {
+    if (token && dni && nombre && rol) {
       usuario = {
         token,
         dni,
-        contrasena,
+        nombre,
         rol
       };
     }
@@ -58,6 +59,10 @@ export class AuthService {
 
   getDni(): string | null {
     return localStorage.getItem('dni');
+  }
+
+  getNombre(): string | null{
+    return localStorage.getItem('nombre');
   }
 
   estaLogueado(): boolean {

@@ -80,6 +80,6 @@ export interface Permiso {
 export interface JwtResponse {
   token: string;
   dni: string;
-  contrasena: string;
+  nombre: string;
   rol: string;
 }

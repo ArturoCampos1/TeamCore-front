@@ -22,15 +22,15 @@
             <div class="input-group">
                 <label for="dni">DNI </label>
                 <input formControlName="dni" type="text" placeholder="12345678A">
-                <small class="error"></small>
             </div>
 
             <div class="input-group">
                 <label for="contrasena">Contraseña </label>
                 <input formControlName="contrasena" type="password" placeholder="••••••••">
-                <small class="error"></small>
             </div>
-            <span class="error">{{ mensajeError }}</span>
+
+            <span *ngIf="formInicioSesion.get('dni')?.errors?.['required'] && formInicioSesion.get('contrasena')?.errors?.['required']" class="error">Ambos campos son requeridos</span>
+
             <button routerLink="/landing" class="btn-volver" type="button">Volver</button>
             <button (click)="onSubmit()" class="btn-siguiente" type="submit">Iniciar Sesión</button>
         </form>

@@ -2,18 +2,22 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-inicio-sesion',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, NgIf],
   templateUrl: './inicio-sesion.html',
   styleUrl: './inicio-sesion.css',
 })
 export class InicioSesion {
 
-  mensajeError: string = '';
+    msjErrorUsuario: boolean = false;
+    msjErrorContrasena: boolean = false;
 
-  formInicioSesion : FormGroup;
+    mensajeError: string = '';
+
+    formInicioSesion : FormGroup;
 
   constructor(
         private router: Router,
@@ -28,6 +32,9 @@ export class InicioSesion {
 
   onSubmit(){
     if(this.formInicioSesion.valid){
+
+      this.mensajeError = '';
+
       const dni = this.formInicioSesion.get('dni')?.value;
       const contrasena = this.formInicioSesion.get('contrasena')?.value;
 
@@ -36,12 +43,10 @@ export class InicioSesion {
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
-          console.error('Error al iniciar sesión:', err);
-          this.mensajeError = 'Usuario no encontrado o contraseña incorrecta';
-        }
-      });
-    } else{
-      this.mensajeError = 'Rellena los datos con coherencia';
+        console.log('Error en el login:', err.error.mensaje);
+        }});
+    } else {
+
     }
   }
 

@@ -72,6 +72,14 @@
     margin-bottom: 30px;
 }
 
+.inicioSesion span{
+    text-align: center;
+}
+
+.inicioSesion small{
+    text-align: right;
+}
+
 .teamcore{
     color: #007bff;
 }
@@ -134,10 +142,11 @@
 
 .error {
     color: #ff4d4f;
-    font-size: 12px;
-    margin-top: 4px;
 }
 
+.input-error {
+    border-color: #ef4444;
+}
 .btn-siguiente {
     margin-top: 10px;
     padding: 14px;
