@@ -20,4 +20,8 @@ export class EmpresaService {
   obtenerNumEmpresas(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/numEmpresas`);
   }
+
+  findById(number: number): Observable<Empresa>{
+    return this.http.get<Empresa>(`${this.apiUrl}/${number}`);
+  }
 }

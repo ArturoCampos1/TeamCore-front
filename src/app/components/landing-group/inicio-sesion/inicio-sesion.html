@@ -29,8 +29,15 @@
                 <input formControlName="contrasena" type="password" placeholder="••••••••">
             </div>
 
-            <span *ngIf="formInicioSesion.get('dni')?.errors?.['required'] && formInicioSesion.get('contrasena')?.errors?.['required']" class="error">Ambos campos son requeridos</span>
-
+            <span 
+            *ngIf="
+                formInicioSesion.get('dni')?.errors?.['required'] && 
+                formInicioSesion.get('contrasena')?.errors?.['required'] &&
+                (formInicioSesion.get('dni')?.touched || formInicioSesion.get('contrasena')?.touched)
+            " 
+            class="error">
+            Ambos campos son requeridos
+            </span>
             <button routerLink="/landing" class="btn-volver" type="button">Volver</button>
             <button (click)="onSubmit()" class="btn-siguiente" type="submit">Iniciar Sesión</button>
         </form>

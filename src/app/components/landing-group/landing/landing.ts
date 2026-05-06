@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import ScrollReveal from 'scrollreveal';
-import { EmpresaService } from '../../services/empresa-service';
+import { EmpresaService } from '../../../services/empresa-service';
 
 @Component({
   selector: 'app-landing',

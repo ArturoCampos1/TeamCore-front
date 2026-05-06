@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { LandingLayout } from './layouts/landing-layout/landing-layout';
 import { MainLayout } from './layouts/main-layout/main-layout';
-import { Landing } from './components/landing/landing';
-import { InicioSesion } from './components/inicio-sesion/inicio-sesion';
-import { Registro } from './components/registro/registro';
-import { RegistroStep2 } from './components/registro-step2/registro-step2';
-import { RegistroStep3 } from './components/registro-step3/registro-step3';
+import { Landing } from './components/landing-group/landing/landing';
+import { InicioSesion } from './components/landing-group/inicio-sesion/inicio-sesion';
+import { Registro } from './components/landing-group/registro/registro';
+import { RegistroStep2 } from './components/landing-group/registro-step2/registro-step2';
+import { RegistroStep3 } from './components/landing-group/registro-step3/registro-step3';
 import { Dashboard } from './components/dashboard/dashboard';
 
 export const routes: Routes = [

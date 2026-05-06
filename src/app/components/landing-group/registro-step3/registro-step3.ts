@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { RegistroCompartir } from '../../services/registro-compartir';
-import { RegistroData } from '../../models/models';
+import { RegistroCompartir } from '../../../services/registro-compartir';
+import { RegistroData } from '../../../models/models';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
-import { RegistroCompleto } from '../../services/registro-completo';
+import { RegistroCompleto } from '../../../services/registro-completo';
 
 @Component({
   selector: 'app-registro-step3',

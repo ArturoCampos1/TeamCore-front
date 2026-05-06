@@ -1,3 +1,26 @@
-<div>
-    <h3>Bienvenido de nuevo</h3>
+<div class="content">
+
+    <h2 class="titulo">Bienvenido, <span class="teamcore">{{ usuarioLogado?.nombre }}</span></h2>
+
+        <div *ngIf="usuarioLogado?.rol == 'ADMIN'">
+            <p>Aquí tienes el resumen de hoy para <span>{{ usuarioLogado?.nombreEmpresa }}</span></p>
+        </div>
+
+        <div *ngIf="usuarioLogado?.rol == 'GERENTE'">
+            <p>Panel de gerencia de <span>{{ usuarioLogado?.nombreEmpresa }}</span></p>
+        </div>
+
+        <div *ngIf="usuarioLogado?.rol == 'RRHH'">
+            <p>Panel de recursos humanos de <span>{{ usuarioLogado?.nombreEmpresa }}</span></p>
+        </div>
+
+        <div *ngIf="usuarioLogado?.rol == 'USUARIO'">
+            <p>Panel de usuario de <span>{{ usuarioLogado?.nombreEmpresa }}</span></p>
+
+        </div>
+
+        <div *ngIf="usuarioLogado?.rol == 'INVITADO'">
+            <p>Panel de invitado de <span>{{ usuarioLogado?.nombreEmpresa }}</span></p>
+
+        </div>
 </div>

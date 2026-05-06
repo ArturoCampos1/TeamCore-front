@@ -17,9 +17,11 @@ export class AuthService {
   login(dni: string, password: string): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(`${this.apiUrl}/login`, { dni, password }).pipe(
       tap((respuesta: JwtResponse) => {
-          //console.log('Respuesta del back:', respuesta);
+          console.log('Respuesta del back:', respuesta);
           localStorage.setItem('token', respuesta.token);
           localStorage.setItem('dni', respuesta.dni);
+          localStorage.setItem('idEmpresa', respuesta.idEmpresa.toString());
+          localStorage.setItem('nombreEmpresa', respuesta.nombreEmpresa);
           localStorage.setItem('nombre', respuesta.nombre);
           localStorage.setItem('rol', respuesta.rol);
       })
@@ -34,14 +36,18 @@ export class AuthService {
   getUsuarioLogado(): JwtResponse | null {
     const token = localStorage.getItem('token');
     const dni = localStorage.getItem('dni');
+    const idEmpresa = localStorage.getItem('idEmpresa');
+    const nombreEmpresa = localStorage.getItem('nombreEmpresa');
     const nombre = localStorage.getItem('nombre');
     const rol = localStorage.getItem('rol');
 
     let usuario: JwtResponse | null = null;
-    if (token && dni && nombre && rol) {
+    if (token && dni && idEmpresa && nombreEmpresa && nombre && rol) {
       usuario = {
         token,
         dni,
+        idEmpresa: Number(idEmpresa),
+        nombreEmpresa,
         nombre,
         rol
       };
@@ -55,6 +61,10 @@ export class AuthService {
 
   getRol(): string | null {
     return localStorage.getItem('rol');
+  }
+
+  getEmpresa(): string | null {
+    return localStorage.getItem('nombreEmpresa');
   }
 
   getDni(): string | null {

@@ -3,8 +3,8 @@ import { RouterLink, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { RegistroData } from '../../models/models';
-import { RegistroCompartir } from '../../services/registro-compartir';
+import { RegistroData } from '../../../models/models';
+import { RegistroCompartir } from '../../../services/registro-compartir';
 
 @Component({
   selector: 'app-registro',
