@@ -7,15 +7,9 @@ import { Registro } from './components/landing-group/registro/registro';
 import { RegistroStep2 } from './components/landing-group/registro-step2/registro-step2';
 import { RegistroStep3 } from './components/landing-group/registro-step3/registro-step3';
 import { Dashboard } from './components/dashboard/dashboard';
+import { authGuard } from './interceptors/auth-guard';
 
 export const routes: Routes = [
-
-  // 🌍 LANDING (solo "/")
-  { 
-    path: '',
-    redirectTo: 'landing',
-    pathMatch: 'full'
-  },
 
   // 🌍 LANDING explícita (opcional)
   {
@@ -34,6 +28,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayout,
+    canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: Dashboard },
       ]

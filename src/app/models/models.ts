@@ -85,3 +85,10 @@ export interface JwtResponse {
   nombre: string;
   rol: string;
 }
+
+export interface AdminData {
+  numEmpleados: number;
+  proyectos: number;
+  tareasPendientes: number;
+  solicitudVacaciones: number;
+}

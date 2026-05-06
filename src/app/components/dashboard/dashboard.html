@@ -1,9 +1,12 @@
 <div class="content">
-
     <h2 class="titulo">Bienvenido, <span class="teamcore">{{ usuarioLogado?.nombre }}</span></h2>
 
         <div *ngIf="usuarioLogado?.rol == 'ADMIN'">
             <p>Aquí tienes el resumen de hoy para <span>{{ usuarioLogado?.nombreEmpresa }}</span></p>
+            <p>Empleados: {{ adminData?.numEmpleados }}</p>
+            <p>Proyectos: {{ adminData?.proyectos }}</p>
+            <p>Tareas pendientes: {{ adminData?.tareasPendientes }}</p>
+            <p>Solicitudes de vacaciones: {{ adminData?.solicitudVacaciones }}</p>
         </div>
 
         <div *ngIf="usuarioLogado?.rol == 'GERENTE'">
