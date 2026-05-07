@@ -14,33 +14,37 @@
 
     <!-- INICIO SESION-->
      <div class="inicioSesion">
-        <h3 class="title">¡Bienvenido de vuelta!</h3>
-        <p>Introduce tus creedenciales para acceder a <span class="teamcore">TeamCore</span></p>
+            <div class="heroYForm">
+                <div class="hero-container">
+                    <img class="hero" src="assets/hero-inicio.png" alt="Hero">
+                </div>
+                <form class="formularioInicio" [formGroup]="formInicioSesion">
+                    <h3 class="title">¡Bienvenido de vuelta!</h3>
+                    <p>Introduce tus creedenciales para acceder a <span class="teamcore">TeamCore</span></p>
+        
+                    <div class="input-group">
+                        <label for="dni">DNI </label>
+                        <input formControlName="dni" type="text" placeholder="12345678A">
+                    </div>
 
-        <form class="formularioInicio" [formGroup]="formInicioSesion">
+                    <div class="input-group">
+                        <label for="contrasena">Contraseña </label>
+                        <input formControlName="contrasena" type="password" placeholder="••••••••">
+                    </div>
 
-            <div class="input-group">
-                <label for="dni">DNI </label>
-                <input formControlName="dni" type="text" placeholder="12345678A">
+                    <span 
+                    *ngIf="
+                        formInicioSesion.get('dni')?.errors?.['required'] && 
+                        formInicioSesion.get('contrasena')?.errors?.['required'] &&
+                        (formInicioSesion.get('dni')?.touched || formInicioSesion.get('contrasena')?.touched)
+                    " 
+                    class="error">
+                    Ambos campos son requeridos
+                    </span>
+                    <button routerLink="/landing" class="btn-volver" type="button">Volver</button>
+                    <button (click)="onSubmit()" class="btn-siguiente" type="submit">Iniciar Sesión</button>
+                </form>
             </div>
-
-            <div class="input-group">
-                <label for="contrasena">Contraseña </label>
-                <input formControlName="contrasena" type="password" placeholder="••••••••">
-            </div>
-
-            <span 
-            *ngIf="
-                formInicioSesion.get('dni')?.errors?.['required'] && 
-                formInicioSesion.get('contrasena')?.errors?.['required'] &&
-                (formInicioSesion.get('dni')?.touched || formInicioSesion.get('contrasena')?.touched)
-            " 
-            class="error">
-            Ambos campos son requeridos
-            </span>
-            <button routerLink="/landing" class="btn-volver" type="button">Volver</button>
-            <button (click)="onSubmit()" class="btn-siguiente" type="submit">Iniciar Sesión</button>
-        </form>
      </div>
     
 </div>
