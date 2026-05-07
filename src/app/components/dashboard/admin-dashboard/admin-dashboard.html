@@ -1,0 +1,69 @@
+<div class="content">
+
+  <h2>
+    Bienvenido de nuevo,
+    <span class="nombre">{{ usuario?.nombre }}</span>!
+  </h2>
+
+  <p class="descripcion">
+    Aquí tienes el resumen diario de
+    <strong>{{ usuario?.nombreEmpresa }}</strong>
+  </p>
+
+  <!-- 📊 GRID RESUMEN -->
+  <div class="grid">
+
+    <div class="card">
+      <p class="label"><img src="assets/empleados.svg" alt="Empleados">Empleados</p>
+      <p class="value">
+        <strong>{{ animatedData.numEmpleados }}</strong>
+      </p>
+    </div>
+
+    <div class="card">
+      <p class="label"><img src="assets/proyectos.svg" alt="Proyectos">Proyectos</p>
+      <p class="value">
+        {{ animatedData.proyectos }}
+      </p>
+    </div>
+
+    <div class="card">
+      <p class="label"><img src="assets/vacaciones.svg" alt="Vacaciones">Solicitudes de Vacaciones</p>
+      <p class="value">
+        {{ animatedData.solicitudVacaciones }}
+      </p>
+    </div>
+
+    <div class="card">
+      <p class="label"><img src="assets/tareas.svg" alt="Tareas">Tareas Pendientes</p>
+      <p class="value">
+        {{ animatedData.tareasPendientes }}
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ⚡ ACCIONES RÁPIDAS -->
+  <div class="acciones">
+
+    <h3>Acciones rápidas</h3>
+
+    <div class="acciones-grid">
+
+      <button class="accion-btn">
+        ➕ Crear empleado
+      </button>
+
+      <button class="accion-btn">
+        📁 Nuevo proyecto
+      </button>
+
+      <button class="accion-btn">
+        📅 Ver solicitudes de vacaciones
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

@@ -15,5 +15,4 @@ export class AdminPart {
   dataAdmin(idEmpresa: number, dni: string): Observable<AdminData> {
     return this.http.get<AdminData>(`${this.apiUrl}/data/${idEmpresa}/${dni}`);
   }
-
 }

@@ -71,11 +71,19 @@ export class AuthService {
     return localStorage.getItem('dni');
   }
 
-  getNombre(): string | null{
+  getNombre(): string | null {
     return localStorage.getItem('nombre');
+  }
+
+  getIdEmpresa(): number {
+    return Number(localStorage.getItem('idEmpresa'));
   }
 
   estaLogueado(): boolean {
     return !!this.getToken();
+  }
+
+  hasRol(rol: string): boolean {
+    return this.getRol() === rol;
   }
 }
