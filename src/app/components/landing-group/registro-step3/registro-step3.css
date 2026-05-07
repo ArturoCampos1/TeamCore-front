@@ -100,8 +100,9 @@
 }
 
 .lista-datos li:hover{
+    border-radius: 10px;
     transition: 0.3s;
-    scale: 1.1;
+    scale: 1.04;
     cursor: pointer;
     background-color: #5d5fef43;
     font-weight: 800;
@@ -303,4 +304,31 @@ vertical-align: middle;
 
 .close:hover{
     cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+    .content-registro{
+        gap: 20px;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .fichaActual, .formSede{
+        padding: 0;
+        width: 100%;
+        height: auto;
+    }
+
+    .formSede h3, p{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sedes{
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+        width: 80%;
+    }
 }

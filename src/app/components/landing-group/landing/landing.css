@@ -380,3 +380,28 @@
     }
     
 }
+
+@media screen and (max-width: 450px) {
+
+    .header{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content-3-card{
+        width: auto;
+        height: auto;
+    }
+
+    .content-3-title{
+        font-size: 22px;
+    }
+
+    .content-3-card p{
+        display: none;
+    }
+
+}

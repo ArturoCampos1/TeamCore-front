@@ -210,3 +210,34 @@
 .line.active {
   background-color: #007bff;
 }
+
+@media screen and (max-width: 480px) {
+    .header{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-title{
+        font-size: 10px;
+        gap: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header img{
+        width: 40px;
+        height: auto;
+    }
+
+    .header button{
+        width: auto;
+    }
+
+    .content-registro{
+        width: 80%;
+    }
+}
