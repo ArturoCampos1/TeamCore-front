@@ -2,39 +2,82 @@
 
   <div class="sidebar-brand">
     <img class="brand-icon" src="assets/teamcorelogo.png" alt="Logo">
+
     <div>
       <div class="brand-name">TeamCore</div>
     </div>
   </div>
 
   <ul class="sidebar-nav">
+
+    <!-- GENERAL -->
     <li class="nav-section-label">General</li>
-    <li class="nav-item active">Dashboard</li>
-    <li class="nav-item">Notificaciones</li>
-    <li class="nav-item">Mi perfil</li>
+
+    <li class="nav-item active" routerLink="/dashboard" routerLinkActive="active">
+      Dashboard
+    </li>
+
+    <li class="nav-item">
+      Notificaciones
+    </li>
+
+    <li class="nav-item">
+      Mi perfil
+    </li>
 
     <div class="nav-divider"></div>
+
+    <!-- GESTIÓN -->
     <li class="nav-section-label">Gestión</li>
-    <li class="nav-item">Empresa</li>
-    <li class="nav-item">Departamentos</li>
-    <li class="nav-item">Empleados</li>
-    <li class="nav-item">Proyectos</li>
-    <li class="nav-item">Vacaciones</li>
+
+    <li
+      class="nav-item"
+      *ngFor="let item of menuItems"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+    >
+        {{ item.label }}
+    </li>
 
     <div class="nav-divider"></div>
+
+    <!-- SISTEMA -->
     <li class="nav-section-label">Sistema</li>
-    <li class="nav-item">Utilidades</li>
+
+    <li class="nav-item">
+      Utilidades
+    </li>
+
   </ul>
 
+  <!-- FOOTER -->
   <div class="sidebar-footer">
+
     <div class="user-row">
-      <div class="avatar">AU</div>
-      <div>
-        <div class="user-name">{{ usuarioLogado?.dni }}</div>
-        <div class="user-role">{{ usuarioLogado?.rol }}</div>
+
+      <div class="avatar">
+        {{ usuarioLogado?.iniciales }}
       </div>
+
+      <div>
+        <div class="user-name">
+          {{ usuarioLogado?.dni }}
+        </div>
+
+        <div class="user-role">
+          {{ usuarioLogado?.rol }}
+        </div>
+      </div>
+
     </div>
-    <button (click)="onLogout()" class="signout-btn">Cerrar sesión</button>
+
+    <button
+      (click)="onLogout()"
+      class="signout-btn"
+    >
+      Cerrar sesión
+    </button>
+
   </div>
 
 </nav>

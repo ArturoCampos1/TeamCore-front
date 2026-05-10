@@ -85,3 +85,8 @@
   background: #d6d6f5;
   transform: translateY(-2px);
 }
+
+.accion-btn img {
+  vertical-align: middle;
+  margin-right: 8px;
+}

@@ -83,6 +83,7 @@ export interface JwtResponse {
   idEmpresa: number;
   nombreEmpresa: string;
   nombre: string;
+  iniciales: string;
   rol: string;
 }
 

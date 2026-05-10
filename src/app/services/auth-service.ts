@@ -23,6 +23,7 @@ export class AuthService {
           localStorage.setItem('idEmpresa', respuesta.idEmpresa.toString());
           localStorage.setItem('nombreEmpresa', respuesta.nombreEmpresa);
           localStorage.setItem('nombre', respuesta.nombre);
+          localStorage.setItem('inicales', this.parseoIniciales(respuesta.nombre));
           localStorage.setItem('rol', respuesta.rol);
       })
     );
@@ -39,16 +40,18 @@ export class AuthService {
     const idEmpresa = localStorage.getItem('idEmpresa');
     const nombreEmpresa = localStorage.getItem('nombreEmpresa');
     const nombre = localStorage.getItem('nombre');
+    const iniciales = localStorage.getItem('inicales');
     const rol = localStorage.getItem('rol');
 
     let usuario: JwtResponse | null = null;
-    if (token && dni && idEmpresa && nombreEmpresa && nombre && rol) {
+    if (token && dni && idEmpresa && nombreEmpresa && nombre && iniciales && rol) {
       usuario = {
         token,
         dni,
         idEmpresa: Number(idEmpresa),
         nombreEmpresa,
         nombre,
+        iniciales,
         rol
       };
     }
@@ -85,5 +88,14 @@ export class AuthService {
 
   hasRol(rol: string): boolean {
     return this.getRol() === rol;
+  }
+
+  parseoIniciales(nombre: string) {
+    const palabras = nombre.split(' ');
+    let iniciales = '';
+    for (const palabra of palabras) {
+      iniciales += palabra.charAt(0).toUpperCase();
+    }
+    return iniciales;
   }
 }
