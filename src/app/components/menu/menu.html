@@ -13,15 +13,16 @@
     <!-- GENERAL -->
     <li class="nav-section-label">General</li>
 
-    <li class="nav-item active" routerLink="/dashboard" routerLinkActive="active">
+    <li class="nav-item" 
+        routerLink="/dashboard/" >
       Dashboard
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item" routerLink="/notificaciones" >
       Notificaciones
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item" routerLink="/mi-perfil" >
       Mi perfil
     </li>
 
@@ -34,7 +35,7 @@
       class="nav-item"
       *ngFor="let item of menuItems"
       [routerLink]="item.route"
-      routerLinkActive="active"
+      
     >
         {{ item.label }}
     </li>
@@ -44,7 +45,7 @@
     <!-- SISTEMA -->
     <li class="nav-section-label">Sistema</li>
 
-    <li class="nav-item">
+    <li class="nav-item" routerLink="/utilidades" >
       Utilidades
     </li>
 

@@ -1,1 +1,71 @@
-<p>gestion-empresa works!</p>
+<div class="content">
+    <h3>Gestiona tu Plataforma</h3>
+    <p class="descripcion">Edita y revisa todos los datos de tu Compañía</p>
+
+    <div class="tarjeta">
+
+    <div class="tarjeta-cuerpo">
+
+        <div class="campo-grupo">
+        <label>Logotipo</label>
+        <div class="logotipo-area">
+            <div class="logotipo-preview">
+            <img src="assets/icono-default.png" width="40px" alt="">
+            </div>
+            <div class="logotipo-info">
+            <a href="#">Cambiar logo</a>
+            <span>SVG, PNG, JPG<br>hasta 10 MB</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="campo-grupo">
+        <label>Nombre de la empresa</label>
+        <input type="text" formControlName="nombreEmpresa" placeholder="Ej. Acme S.L.">
+        </div>
+
+        <div class="campo-grupo">
+        <label>CIF</label>
+        <input type="text" formControlName="cif" placeholder="Ej. B12345678">
+        </div>
+    
+        <div class="campo-grupo">
+        <label>Fecha de salida</label>
+        <input type="date" formControlName="fechaSalida">
+        </div>
+
+        <div class="campo-grupo campo-ancho-completo">
+        <label>Área de Trabajo</label>
+        <select formControlName="areaTrabajo">
+            <option disabled selected>Selecciona un área</option>
+            <option>Administración</option>
+            <option>Recursos Humanos</option>
+            <option>Finanzas</option>
+            <option>Contabilidad</option>
+            <option>Marketing</option>
+            <option>Marketing Digital</option>
+            <option>Ventas</option>
+            <option>Atención al Cliente</option>
+            <option>Soporte Técnico</option>
+            <option>Desarrollo de Software</option>
+            <option>Diseño UX/UI</option>
+            <option>Diseño Gráfico</option>
+            <option>Producto</option>
+            <option>Gestión de Proyectos</option>
+            <option>Logística</option>
+            <option>Operaciones</option>
+            <option>Legal</option>
+            <option>IT / Sistemas</option>
+            <option>Formación</option>
+        </select>
+        </div>
+
+        <div class="campo-grupo campo-ancho-completo">
+        <label>Datos</label>
+        <textarea formControlName="datos" placeholder="Información adicional sobre la empresa..."></textarea>
+        </div>
+
+    </div>
+    </div>
+
+</div>
