@@ -5,19 +5,7 @@
     <div class="contenido-empresa">
         <div class="tarjeta">
         <h3>Empresa</h3>
-        <div class="tarjeta-cuerpo">
-            <div class="campo-grupo">
-            <label>Logotipo</label>
-            <div class="logotipo-area">
-                <div class="logotipo-preview">
-                <img src="assets/icono-default.png" width="40px" alt="">
-                </div>
-                <div class="logotipo-info">
-                <a href="#">Cambiar logo</a>
-                <span>SVG, PNG, JPG<br>hasta 10 MB</span>
-                </div>
-            </div>
-            </div>
+        <form class="tarjeta-cuerpo" [formGroup]="formEmpresa">
 
             <div class="campo-grupo">
             <label>Nombre de la empresa</label>
@@ -65,66 +53,65 @@
             <textarea formControlName="datos" placeholder="Información adicional sobre la empresa..."></textarea>
             </div>
 
-        </div>
+        </form>
         </div>
         <div class="sedes">
             <h3>Sedes</h3>
 
-        <div class="card-sedes">
+        <form class="card-sedes" [formGroup]="formEmpresa">
 
-            <div class="sede-grid">
+            <div formArrayName="sedes">
+
+                <div 
+                class="sede-grid"
+                *ngFor="let sede of sedes.controls; let i = index"
+                [formGroupName]="i"
+                >
 
                 <div class="input-box nombre-sede">
                     <label>Nombre del edificio / sede</label>
-                    <input type="text" placeholder="Ej. Oficina Central">
+                    <input type="text" formControlName="nombreSede">
                 </div>
 
                 <div class="input-box pais">
                     <label>País</label>
-                    <input type="text" placeholder="España">
+                    <input type="text" formControlName="pais">
                 </div>
 
                 <div class="input-box ciudad">
                     <label>Ciudad</label>
-                    <input type="text" placeholder="Madrid">
+                    <input type="text" formControlName="ciudad">
                 </div>
 
                 <div class="input-box postal">
                     <label>Código postal</label>
-                    <input type="text" placeholder="28001">
+                    <input type="text" formControlName="codigoPostal">
                 </div>
 
                 <div class="input-box direccion">
                     <label>Dirección</label>
-                    <input type="text" placeholder="Calle Gran Vía 123">
+                    <input type="text" formControlName="direccion">
                 </div>
 
-            </div>
+                <div class="geo-grid">
 
-                <div class="geo-box">
-
-                    <div class="geo-header">
-                        <span><img src="assets/location.svg" alt="location"> Servicio de Geolocalización</span>
-                        <small>Permite a tus empleados encontrar fácilmente tu sede</small>
+                    <div class="input-box">
+                    <label>Latitud</label>
+                    <input type="text" formControlName="latitud">
                     </div>
 
-                    <div class="geo-grid">
-
-                        <div class="input-box">
-                            <label>Latitud</label>
-                            <input type="text" placeholder="40.4168">
-                        </div>
-
-                        <div class="input-box">
-                            <label>Longitud</label>
-                            <input type="text" placeholder="-3.7038">
-                        </div>
-
+                    <div class="input-box">
+                    <label>Longitud</label>
+                    <input type="text" formControlName="longitud">
                     </div>
 
                 </div>
 
+                </div>
+
             </div>
+
+            </form>
         </div>
 
 </div>

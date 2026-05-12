@@ -17,6 +17,8 @@ export interface Sede {
   ciudad?: string;
   codPostal?: string;
   empresa?: Empresa;
+  latitud: string;
+  longitud: string;
 }
 
 export interface Usuario {
