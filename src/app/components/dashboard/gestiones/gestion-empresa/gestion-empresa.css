@@ -18,7 +18,7 @@
 .tarjeta,
 .sedes {
   width: 600px;
-  height: 500px;
+  height: 580px;
   padding: 20px;
   border-radius: 12px;
   background: #ffffff;
@@ -240,6 +240,21 @@
 
 }
 
+.btn-descartar-empresa {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #be300c;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+  background-color: #be300cb9;
+  }
+
+}
+
 .btn-guardar-empresa {
   padding: 10px 16px;
   border-radius: 8px;
@@ -252,6 +267,11 @@
   &:hover {
     background: #3a5dbf;
   }
+}
+
+.msj{
+  color: #3a5ebfb5;
+  font-size: 14px;
 }
 
 .error {

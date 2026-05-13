@@ -195,9 +195,12 @@
       <label>Datos</label>
       <textarea formControlName="datos"
         placeholder="Información adicional sobre la empresa..."></textarea>
-
+        <span class="msj">{{ mensaje }}</span>
         <button type="button" (click)="onSubmit()" class="btn-guardar-empresa">
           Guardar Empresa
+        </button>
+        <button type="button" (click)="ngOnInit()" class="btn-descartar-empresa">
+          Descartar Cambios
         </button>
       </div>
 
@@ -354,7 +357,7 @@
                 </small>
               </div>
             </div>
-            <button  class="btn-guardar-sede">Guardar</button>
+            <button (click)="onGuardarSede(i)" class="btn-guardar-sede">Guardar</button>
           </div>
         </div>
       </form>

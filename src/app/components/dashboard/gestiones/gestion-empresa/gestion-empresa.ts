@@ -4,6 +4,8 @@ import { Empresa, JwtResponse, Sede } from '../../../../models/models';
 import { EmpresaService } from '../../../../services/empresa-service';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
+import { SedeService } from '../../../../services/sede-service';
 
 @Component({
   selector: 'app-gestion-empresa',
@@ -13,14 +15,18 @@ import { CommonModule } from '@angular/common';
 })
 export class GestionEmpresa implements OnInit {
 
+  mensaje: string = '';
   formEmpresa: FormGroup;
   usuario: JwtResponse | null = null;
   empresa: Empresa | null = null;
 
   constructor(
     private authService: AuthService,
+    private sedeService: SedeService,
     private empresaService: EmpresaService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cd: ChangeDetectorRef
+
   ) {
     this.formEmpresa = this.fb.group({
       nombreEmpresa: ['', [Validators.minLength(3), Validators.maxLength(25)]],
@@ -59,13 +65,14 @@ export class GestionEmpresa implements OnInit {
 
   crearSede(sede?: Sede): FormGroup {
     return this.fb.group({
-      nombreSede: [sede?.nombreSede || '', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      direccion: [sede?.direccion || '', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
-      pais: [sede?.pais || '', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      ciudad: [sede?.ciudad || '', [Validators.required, Validators.pattern(/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s]+$/)]],
-      codPostal: [sede?.codPostal || '', [Validators.required, Validators.pattern(/^[A-Za-z0-9\s\-]{3,10}$/)]],
-      latitud: [sede?.latitud || '', [Validators.required, Validators.pattern(/^-?([0-9]|[1-8][0-9]|90)\.?[0-9]{0,6}$/)]],
-      longitud: [sede?.longitud || '', [Validators.required, Validators.pattern(/^-?([0-9]|[1-9][0-9]|1[0-7][0-9]|180)\.?[0-9]{0,6}$/)]]
+      idSede: [sede?.idSede],   
+      nombreSede: [sede?.nombreSede || '', [Validators.required]],
+      direccion: [sede?.direccion || ''],
+      pais: [sede?.pais || ''],
+      ciudad: [sede?.ciudad || ''],
+      codPostal: [sede?.codPostal || ''],
+      latitud: [sede?.latitud || ''],
+      longitud: [sede?.longitud || '']
     });
   }
 
@@ -97,35 +104,69 @@ export class GestionEmpresa implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    if (this.formEmpresa.valid) {
-      const empresaActualizada: Empresa = {
-        ...this.empresa,
-        ...this.formEmpresa.value
-      };
+onSubmit(): void {
 
-      this.empresaService.update(empresaActualizada).subscribe({
-        next: (data: Empresa) => {
-          this.empresa = data;
-          console.log('Empresa guardada:', data);
-        },
-        error: (err) => console.error('Error guardando empresa:', err)
-      });
+  this.mensaje = 'Guardando...';
+
+  if (this.formEmpresa.valid) {
+
+    if (!this.formEmpresa.touched) {
+      this.mensaje = 'No se han realizado cambios';
+      return;
     }
+
+    const empresaActualizada: Empresa = {
+      ...this.empresa,
+      ...this.formEmpresa.value
+    };
+
+    this.empresaService.update(empresaActualizada).subscribe({
+
+      next: (data: Empresa) => {
+        this.empresa = data;
+        this.mensaje = 'Empresa actualizada correctamente';
+
+        this.cd.detectChanges();
+      },
+
+      error: (err) => {
+        console.error(err);
+        this.mensaje = 'Error al guardar';
+
+        this.cd.detectChanges();
+      }
+
+    });
+
+  } else {
+    this.mensaje = 'Formulario inválido';
+    this.formEmpresa.markAllAsTouched();
   }
-/*
-  onGuardarSede(index: number): void {
-  const sedeForm = this.sedes.at(index).value;
+}
+
+onGuardarSede(index: number): void {
+
+  const sedeGroup = this.sedes.at(index);
+
+  if (sedeGroup.invalid) {
+    sedeGroup.markAllAsTouched();
+    this.mensaje = 'Sede inválida';
+    return;
+  }
+
   const sede: Sede = {
-    ...this.empresa?.sedes?.[index],
-    ...sedeForm
+    ...sedeGroup.value,
+    empresa: {
+      idEmpresa: this.empresa!.idEmpresa
+    } as Empresa
   };
 
-  this.empresaService.updateSede(sede).subscribe({
-    next: (data: Sede) => {
-      console.log('Sede guardada:', data);
-    },
-    error: (err) => console.error('Error guardando sede:', err)
+  this.sedeService.update(sede).subscribe({
+    next: () => this.mensaje = 'Sede guardada',
+    error: (err) => {
+      console.error(err);
+      this.mensaje = 'Error al guardar sede';
+    }
   });
-  }*/
+}
 }
