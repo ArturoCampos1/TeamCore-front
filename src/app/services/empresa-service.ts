@@ -17,6 +17,10 @@ export class EmpresaService {
     return this.http.post<Empresa>(this.apiUrl, empresa);
   }
 
+  update(empresa: Empresa): Observable<Empresa> {
+    return this.http.put<Empresa>(`${this.apiUrl}/${empresa.idEmpresa}`, empresa);
+  }
+
   obtenerNumEmpresas(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/numEmpresas`);
   }

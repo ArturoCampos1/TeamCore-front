@@ -1,117 +1,364 @@
 <div class="content">
-    <h3>Gestiona tu Plataforma</h3>
-    <p class="descripcion">Edita y revisa todos los datos de tu Compañía</p>
+  <h3>Gestiona tu Plataforma</h3>
+  <p class="descripcion">Edita y revisa todos los datos de tu Compañía</p>
 
-    <div class="contenido-empresa">
-        <div class="tarjeta">
-        <h3>Empresa</h3>
-        <form class="tarjeta-cuerpo" [formGroup]="formEmpresa">
+  <div class="contenido-empresa">
 
-            <div class="campo-grupo">
-            <label>Nombre de la empresa</label>
-            <input type="text" formControlName="nombreEmpresa" placeholder="Ej. Acme S.L.">
-            </div>
+    <!-- EMPRESA -->
+ <div class="tarjeta">
+  <h3>Empresa</h3>
 
-            <div class="campo-grupo">
-            <label>CIF</label>
-            <input type="text" formControlName="cif" placeholder="Ej. B12345678">
-            </div>
-        
-            <div class="campo-grupo">
-            <label>Fecha de salida</label>
-            <input type="date" formControlName="fechaSalida">
-            </div>
+  <form class="tarjeta-cuerpo" [formGroup]="formEmpresa">
 
-            <div class="campo-grupo campo-ancho-completo">
-            <label>Área de Trabajo</label>
-            <select formControlName="areaTrabajo">
-                <option disabled selected>Selecciona un área</option>
-                <option>Administración</option>
-                <option>Recursos Humanos</option>
-                <option>Finanzas</option>
-                <option>Contabilidad</option>
-                <option>Marketing</option>
-                <option>Marketing Digital</option>
-                <option>Ventas</option>
-                <option>Atención al Cliente</option>
-                <option>Soporte Técnico</option>
-                <option>Desarrollo de Software</option>
-                <option>Diseño UX/UI</option>
-                <option>Diseño Gráfico</option>
-                <option>Producto</option>
-                <option>Gestión de Proyectos</option>
-                <option>Logística</option>
-                <option>Operaciones</option>
-                <option>Legal</option>
-                <option>IT / Sistemas</option>
-                <option>Formación</option>
+    <!-- NOMBRE EMPRESA -->
+    <div class="campo-grupo">
+      <label>Nombre de la empresa</label>
+      <input type="text" formControlName="nombreEmpresa" placeholder="Ej. Acme S.L.">
+
+      <small class="error"
+    *ngIf="formEmpresa.get('nombreEmpresa')?.touched && formEmpresa.get('nombreEmpresa')?.errors">
+
+        <span *ngIf="formEmpresa.get('nombreEmpresa')?.errors?.['minlength']">
+          Mínimo 3 caracteres
+        </span>
+
+        <span *ngIf="formEmpresa.get('nombreEmpresa')?.errors?.['maxlength']">
+          Máximo 25 caracteres
+        </span>
+
+      </small>
+    </div>
+
+
+    <!-- CIF -->
+    <div class="campo-grupo">
+      <label>CIF</label>
+      <input type="text" formControlName="cif" placeholder="Ej. B12345678">
+
+      <small class="error"
+    *ngIf="formEmpresa.get('cif')?.touched && formEmpresa.get('cif')?.errors">
+
+        <span *ngIf="formEmpresa.get('cif')?.errors?.['required']">
+          El CIF es obligatorio
+        </span>
+
+        <span *ngIf="formEmpresa.get('cif')?.errors?.['maxlength']">
+          Máximo 9 caracteres
+        </span>
+
+        <span *ngIf="formEmpresa.get('cif')?.errors?.['pattern']">
+          Formato de CIF no válido
+        </span>
+
+      </small>
+    </div>
+
+
+    <!-- FECHA SALIDA -->
+    <div class="campo-grupo">
+      <label>Fecha de salida</label>
+      <input type="date" formControlName="fechaSalida">
+
+      <small class="error"
+        *ngIf="formEmpresa.get('fechaSalida')?.touched && formEmpresa.get('fechaSalida')?.errors">
+
+        <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['required']">
+          La fecha es obligatoria
+        </span>
+
+        <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['pattern']">
+          Formato de fecha inválido
+        </span>
+
+        <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['fechaInvalida']">
+          La fecha no es válida
+        </span>
+
+      </small>
+    </div>
+
+
+    <!-- ÁREA TRABAJO -->
+    <div class="campo-grupo campo-ancho-completo">
+      <label>Área de Trabajo</label>
+      <select formControlName="areaTrabajo">
+
+        <option value="" disabled>Selecciona un área</option>
+
+            <option value="Administración">Administración</option>
+            <option value="Recursos Humanos">Recursos Humanos</option>
+            <option value="Finanzas">Finanzas</option>
+            <option value="Contabilidad">Contabilidad</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Marketing Digital">Marketing Digital</option>
+            <option value="Ventas">Ventas</option>
+            <option value="Atención al Cliente">Atención al Cliente</option>
+            <option value="Soporte Técnico">Soporte Técnico</option>
+            <option value="Desarrollo de Software">Desarrollo de Software</option>
+            <option value="Diseño UX/UI">Diseño UX/UI</option>
+            <option value="Diseño Gráfico">Diseño Gráfico</option>
+            <option value="Producto">Producto</option>
+            <option value="Gestión de Proyectos">Gestión de Proyectos</option>
+            <option value="Logística">Logística</option>
+            <option value="Ciberseguridad">Ciberseguridad</option>
+            <option value="Operaciones">Operaciones</option>
+            <option value="Legal">Legal</option>
+            <option value="IT / Sistemas">IT / Sistemas</option>
+            <option value="Formación">Formación</option>
+            <option value="Compras">Compras</option>
+            <option value="Producción">Producción</option>
+            <option value="Calidad">Calidad</option>
+            <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="Ingeniería">Ingeniería</option>
+            <option value="Arquitectura">Arquitectura</option>
+            <option value="Construcción">Construcción</option>
+            <option value="Comercio Exterior">Comercio Exterior</option>
+            <option value="Importación y Exportación">Importación y Exportación</option>
+            <option value="Almacén">Almacén</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Distribución">Distribución</option>
+            <option value="Relaciones Públicas">Relaciones Públicas</option>
+            <option value="Comunicación">Comunicación</option>
+            <option value="Publicidad">Publicidad</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Ventas Online">Ventas Online</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Análisis de Datos">Análisis de Datos</option>
+            <option value="Business Intelligence">Business Intelligence</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+            <option value="Automatización">Automatización</option>
+            <option value="Telecomunicaciones">Telecomunicaciones</option>
+            <option value="Seguridad">Seguridad</option>
+            <option value="Medio Ambiente">Medio Ambiente</option>
+            <option value="Sostenibilidad">Sostenibilidad</option>
+            <option value="Prevención de Riesgos">Prevención de Riesgos</option>
+            <option value="Salud Ocupacional">Salud Ocupacional</option>
+            <option value="Auditoría">Auditoría</option>
+            <option value="Consultoría">Consultoría</option>
+            <option value="Tesorería">Tesorería</option>
+            <option value="Fiscalidad">Fiscalidad</option>
+            <option value="Banca y Seguros">Banca y Seguros</option>
+            <option value="Educación">Educación</option>
+            <option value="Investigación">Investigación</option>
+            <option value="Hostelería">Hostelería</option>
+            <option value="Turismo">Turismo</option>
+            <option value="Restauración">Restauración</option>
+            <option value="Agricultura">Agricultura</option>
+            <option value="Ganadería">Ganadería</option>
+            <option value="Industria Alimentaria">Industria Alimentaria</option>
+            <option value="Farmacéutica">Farmacéutica</option>
+            <option value="Laboratorio">Laboratorio</option>
+            <option value="Sanidad">Sanidad</option>
+            <option value="Enfermería">Enfermería</option>
+            <option value="Psicología">Psicología</option>
+            <option value="Trabajo Social">Trabajo Social</option>
+            <option value="Call Center">Call Center</option>
+            <option value="Back Office">Back Office</option>
+            <option value="Recepción">Recepción</option>
+            <option value="Secretariado">Secretariado</option>
+            <option value="Dirección General">Dirección General</option>
+            <option value="Alta Dirección">Alta Dirección</option>
+            <option value="Desarrollo de Negocio">Desarrollo de Negocio</option>
+            <option value="Franquicias">Franquicias</option>
+            <option value="Bienes Raíces">Bienes Raíces</option>
+            <option value="Mecánica">Mecánica</option>
+            <option value="Electricidad">Electricidad</option>
+            <option value="Electrónica">Electrónica</option>
+            <option value="Energía">Energía</option>
+            <option value="Minería">Minería</option>
+            <option value="Textil">Textil</option>
+            <option value="Moda">Moda</option>
+            <option value="Artes y Cultura">Artes y Cultura</option>
+            <option value="Producción Audiovisual">Producción Audiovisual</option>
+            <option value="Fotografía">Fotografía</option>
+            <option value="Redacción y Contenidos">Redacción y Contenidos</option>
+            <option value="Traducción">Traducción</option>
+            <option value="Asistencia Virtual">Asistencia Virtual</option>
+            <option value="Servicios Generales">Servicios Generales</option>
+
             </select>
+        <small class="error"
+        *ngIf="formEmpresa.get('areaTrabajo')?.touched && formEmpresa.get('areaTrabajo')?.errors">
+
+        <span *ngIf="formEmpresa.get('areaTrabajo')?.errors?.['required']">
+          Debes seleccionar un área de trabajo
+        </span>
+
+      </small>
+    </div>
+
+
+    <!-- DATOS -->
+    <div class="campo-grupo campo-ancho-completo">
+      <label>Datos</label>
+      <textarea formControlName="datos"
+        placeholder="Información adicional sobre la empresa..."></textarea>
+
+        <button type="button" (click)="onSubmit()" class="btn-guardar-empresa">
+          Guardar Empresa
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+    <!-- SEDES -->
+    <div class="sedes">
+      <h3>Sedes</h3>
+
+      <form class="card-sedes" [formGroup]="formEmpresa">
+        <div formArrayName="sedes" class="sedes-scroll">
+
+          <div
+            class="sede-grid"
+            *ngFor="let sede of sedes.controls; let i = index"
+            [formGroupName]="i"
+          >
+
+            <div class="input-box nombre-sede">
+              <label><span>{{ i + 1 }}</span>- Nombre del edificio / sede </label>
+              <input type="text" formControlName="nombreSede">
+
+              <small class="error" *ngIf="sede.get('nombreSede')?.touched && sede.get('nombreSede')?.errors">
+
+                <span *ngIf="sede.get('nombreSede')?.errors?.['required']">
+                  El nombre de la sede es obligatorio
+                </span>
+
+                <span *ngIf="sede.get('nombreSede')?.errors?.['minlength']">
+                  Mínimo 3 caracteres
+                </span>
+
+                <span *ngIf="sede.get('nombreSede')?.errors?.['maxlength']">
+                  Máximo 100 caracteres
+                </span>
+
+              </small>
             </div>
 
-            <div class="campo-grupo campo-ancho-completo">
-            <label>Datos</label>
-            <textarea formControlName="datos" placeholder="Información adicional sobre la empresa..."></textarea>
+
+            <div class="input-box pais">
+              <label>País</label>
+              <input type="text" formControlName="pais">
+
+              <small class="error" *ngIf="sede.get('pais')?.touched && sede.get('pais')?.errors">
+
+                <span *ngIf="sede.get('pais')?.errors?.['required']">
+                  El país es obligatorio
+                </span>
+
+                <span *ngIf="sede.get('pais')?.errors?.['minlength']">
+                  Mínimo 3 caracteres
+                </span>
+
+                <span *ngIf="sede.get('pais')?.errors?.['maxlength']">
+                  Máximo 100 caracteres
+                </span>
+
+              </small>
             </div>
 
-        </form>
+
+            <div class="input-box ciudad">
+              <label>Ciudad</label>
+              <input type="text" formControlName="ciudad">
+
+              <small class="error" *ngIf="sede.get('ciudad')?.touched && sede.get('ciudad')?.errors">
+
+                <span *ngIf="sede.get('ciudad')?.errors?.['required']">
+                  La ciudad es obligatoria
+                </span>
+
+                <span *ngIf="sede.get('ciudad')?.errors?.['pattern']">
+                  Solo se permiten letras y espacios
+                </span>
+
+              </small>
+            </div>
+
+
+            <div class="input-box postal">
+              <label>Código postal</label>
+              <input type="text" formControlName="codPostal">
+
+              <small class="error" *ngIf="sede.get('codPostal')?.touched && sede.get('codPostal')?.errors">
+
+                <span *ngIf="sede.get('codPostal')?.errors?.['required']">
+                  El código postal es obligatorio
+                </span>
+
+                <span *ngIf="sede.get('codPostal')?.errors?.['pattern']">
+                  Formato no válido
+                </span>
+
+              </small>
+            </div>
+
+
+            <div class="input-box direccion">
+              <label>Dirección</label>
+              <input type="text" formControlName="direccion">
+
+              <small class="error" *ngIf="sede.get('direccion')?.touched && sede.get('direccion')?.errors">
+
+                <span *ngIf="sede.get('direccion')?.errors?.['required']">
+                  La dirección es obligatoria
+                </span>
+
+                <span *ngIf="sede.get('direccion')?.errors?.['minlength']">
+                  Mínimo 5 caracteres
+                </span>
+
+                <span *ngIf="sede.get('direccion')?.errors?.['maxlength']">
+                  Máximo 150 caracteres
+                </span>
+
+              </small>
+            </div>
+
+
+            <div class="geo-grid">
+              <div class="input-box">
+                <label>Latitud</label>
+                <input type="text" formControlName="latitud">
+
+                <small class="error" *ngIf="sede.get('latitud')?.touched && sede.get('latitud')?.errors">
+
+                  <span *ngIf="sede.get('latitud')?.errors?.['required']">
+                    La latitud es obligatoria
+                  </span>
+
+                  <span *ngIf="sede.get('latitud')?.errors?.['pattern']">
+                    Latitud inválida
+                  </span>
+
+                </small>
+              </div>
+
+              <div class="input-box">
+                <label>Longitud</label>
+                <input type="text" formControlName="longitud">
+
+                <small class="error" *ngIf="sede.get('longitud')?.touched && sede.get('longitud')?.errors">
+
+                  <span *ngIf="sede.get('longitud')?.errors?.['required']">
+                    La longitud es obligatoria
+                  </span>
+
+                  <span *ngIf="sede.get('longitud')?.errors?.['pattern']">
+                    Longitud inválida
+                  </span>
+
+                </small>
+              </div>
+            </div>
+            <button  class="btn-guardar-sede">Guardar</button>
+          </div>
         </div>
-        <div class="sedes">
-            <h3>Sedes</h3>
+      </form>
+    </div>
 
-        <form class="card-sedes" [formGroup]="formEmpresa">
-
-            <div formArrayName="sedes">
-
-                <div 
-                class="sede-grid"
-                *ngFor="let sede of sedes.controls; let i = index"
-                [formGroupName]="i"
-                >
-
-                <div class="input-box nombre-sede">
-                    <label>Nombre del edificio / sede</label>
-                    <input type="text" formControlName="nombreSede">
-                </div>
-
-                <div class="input-box pais">
-                    <label>País</label>
-                    <input type="text" formControlName="pais">
-                </div>
-
-                <div class="input-box ciudad">
-                    <label>Ciudad</label>
-                    <input type="text" formControlName="ciudad">
-                </div>
-
-                <div class="input-box postal">
-                    <label>Código postal</label>
-                    <input type="text" formControlName="codigoPostal">
-                </div>
-
-                <div class="input-box direccion">
-                    <label>Dirección</label>
-                    <input type="text" formControlName="direccion">
-                </div>
-
-                <div class="geo-grid">
-
-                    <div class="input-box">
-                    <label>Latitud</label>
-                    <input type="text" formControlName="latitud">
-                    </div>
-
-                    <div class="input-box">
-                    <label>Longitud</label>
-                    <input type="text" formControlName="longitud">
-                    </div>
-
-                </div>
-
-                </div>
-
-            </div>
-
-            </form>
-        </div>
-
+  </div>
 </div>

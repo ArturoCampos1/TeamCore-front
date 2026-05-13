@@ -10,6 +10,7 @@
   display: flex;
   width: 80%;
   gap: 50px;
+  align-items: stretch;
 }
 
 /* TARJETAS */
@@ -17,10 +18,12 @@
 .tarjeta,
 .sedes {
   width: 600px;
+  height: 500px;
   padding: 20px;
   border-radius: 12px;
   background: #ffffff;
   border: 0.5px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .tarjeta h3,
@@ -115,10 +118,38 @@
 
 /* SEDES */
 
-.card-sedes {
+.sedes {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+}
+
+.card-sedes {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sedes-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 8px;
+}
+
+/* SCROLL */
+
+.sedes-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sedes-scroll::-webkit-scrollbar-thumb {
+  background: #c5d2f5;
+  border-radius: 10px;
+}
+
+.sedes-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .sede-grid,
@@ -130,7 +161,13 @@
 
 .nombre-sede,
 .direccion {
+  margin-top: 20px;
   grid-column: span 2;
+}
+
+.nombre-sede span {
+  font-size: 20px;
+  color: #4f7ced;
 }
 
 .input-box {
@@ -145,12 +182,13 @@
   }
 
   input {
-    width: 60%;
+    width: 100%;
     padding: 10px 12px;
     border-radius: 10px;
     border: 1px solid #dbe1ea;
     background: #f8fafc;
     outline: none;
+    box-sizing: border-box;
 
     &:focus {
       border-color: #4f7ced;
@@ -182,8 +220,45 @@
   }
 }
 
-.geo-header img{
+.geo-header img {
   vertical-align: middle;
+}
+
+.btn-guardar-sede {
+  margin-top: 20px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #4f7ced;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #3a5dbf;
+  }
+
+}
+
+.btn-guardar-empresa {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #4f7ced;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #3a5dbf;
+  }
+}
+
+.error {
+  display: block;
+  margin-top: 4px;
+  color: #e53935;
+  font-size: 12px;
 }
 
 /* RESPONSIVE */
@@ -197,6 +272,11 @@
   .tarjeta,
   .sedes {
     width: 100%;
+    height: auto;
+  }
+
+  .card-sedes {
+    overflow-y: visible;
   }
 
   .tarjeta-cuerpo,
@@ -209,4 +289,43 @@
   .direccion {
     grid-column: span 1;
   }
+}
+
+@media screen and (max-width: 1300px) {
+
+   .contenido-empresa {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .tarjeta {
+    order: 1; /* Empresa arriba */
+    height: auto;
+  }
+
+  .sedes {
+    order: 2; /* Sedes abajo */
+    height: 400px;
+  }
+
+  .tarjeta,
+  .sedes {
+    width: 80%;
+  }
+
+  .card-sedes {
+    overflow-y: visible;
+  }
+
+  .tarjeta-cuerpo,
+  .sede-grid,
+  .geo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nombre-sede,
+  .direccion {
+    grid-column: span 1;
+  }
+  
 }

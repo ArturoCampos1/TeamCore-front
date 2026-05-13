@@ -23,7 +23,6 @@ export class RegistroStep2 {
         this.formRegistro = this.fb.group({
           nombreAdministrador: [''],
           nombreEmpresa: [''],
-          logoEmpresa: [null],
           cif: ['', [Validators.required, Validators.maxLength(9), Validators.pattern(/^[A-HJ-NP-SUVW]\d{7}[0-9A-J]$/)]],
           fechaFundacion: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/), this.fechaNoValidaValidator()]],
           areaTrabajo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]]
