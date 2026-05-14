@@ -41,7 +41,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./layouts/main-layout/main-layout').then(c => c.MainLayout),
-    canActivate: [],
+    canActivate: [authGuard],
     children: [
 
       {
@@ -54,7 +54,7 @@ export const routes: Routes = [
         path: 'dashboard/admin',
         loadComponent: () =>
           import('./components/dashboard/admin-dashboard/admin-dashboard').then(c => c.AdminDashboard),
-        canActivate: [roleGuard],
+        canActivate: [],
         data: { role: 'ADMIN' }
       },
       {
@@ -68,6 +68,13 @@ export const routes: Routes = [
         path: 'admin/empresa/verUsuarios',
         loadComponent: () =>
           import('./components/dashboard/gestiones/gestion-empresa/acciones/ver-usuarios/ver-usuarios').then(c => c.VerUsuarios),
+        canActivate: [roleGuard],
+        data: { role: 'ADMIN' }
+      },
+            {
+        path: 'admin/empresa/crearEditarUsuarios',
+        loadComponent: () =>
+          import('./components/dashboard/gestiones/gestion-empresa/acciones/crear-editar-usuario/crear-editar-usuario').then(c => c.CrearEditarUsuario),
         canActivate: [roleGuard],
         data: { role: 'ADMIN' }
       },

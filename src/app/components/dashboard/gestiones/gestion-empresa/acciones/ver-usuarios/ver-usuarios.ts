@@ -3,10 +3,11 @@ import { JwtResponse, Usuario } from '../../../../../../models/models';
 import { AuthService } from '../../../../../../services/auth-service';
 import { UsuarioService } from '../../../../../../services/usuario-service';
 import { NgFor, NgIf} from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ver-usuarios',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, RouterLink],
   templateUrl: './ver-usuarios.html',
   styleUrl: './ver-usuarios.css',
 })

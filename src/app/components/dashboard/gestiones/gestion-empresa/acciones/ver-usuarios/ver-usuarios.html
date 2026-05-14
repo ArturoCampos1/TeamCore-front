@@ -3,7 +3,7 @@
   <div class="empleados">
     <div class="title-empleados">
         <h2 class="titulo">Empleados</h2>
-        <button class="btn-crear">Crear</button>
+        <button class="btn-crear" routerLink="/admin/empresa/crearEditarUsuarios">Crear</button>
     </div>
     <p style="margin: 0;">Total empleados: {{ usuarios.length }}</p>
     <div *ngFor="let usuario of usuarios" class="tarjeta-empleados">
