@@ -1,0 +1,43 @@
+<div class="content">
+
+  <div class="empleados">
+    <div class="title-empleados">
+        <h2 class="titulo">Empleados</h2>
+        <button class="btn-crear">Crear</button>
+    </div>
+    <p style="margin: 0;">Total empleados: {{ usuarios.length }}</p>
+    <div *ngFor="let usuario of usuarios" class="tarjeta-empleados">
+      <div class="header-usuario">
+        <div>
+          <h3>{{ usuario.nombreUsuario }}<span *ngIf="usuario.idUsuario === usuarioLogado?.idUsuario" class="tag-tu"> Tú</span></h3>
+          <p class="puesto">{{ usuario.puesto || 'Empleado' }}</p>
+        </div>
+      </div>
+      <div class="info-usuario">
+        <p><strong>DNI:</strong>{{ usuario.dni }}</p>
+
+        <p *ngIf="usuario.correo"><strong>Email:</strong>{{ usuario.correo }}</p>
+
+        <p *ngIf="usuario.numeroTelefono"><strong>Teléfono:</strong>{{ usuario.numeroTelefono }}</p>
+
+        <p *ngIf="usuario.direccion"><strong>Dirección:</strong>{{ usuario.direccion }}</p>
+
+        <p *ngIf="usuario.salarioBruto"><strong>Salario:</strong>{{ usuario.salarioBruto }} €</p>
+
+        <p *ngIf="usuario.horasSemanales"><strong>Horas semanales:</strong>{{ usuario.horasSemanales }}</p>
+
+        <p *ngIf="usuario.diasVacacionesDisponibles"><strong>Vacaciones:</strong>{{ usuario.diasVacacionesDisponibles }} días</p>
+
+        <p *ngIf="usuario.fechaEntrada"><strong>Fecha entrada:</strong>{{ usuario.fechaEntrada }}</p>
+
+        <div class="acciones">
+
+          <button class="btn-editar">Editar</button>
+
+          <button (click)="deleteUsuario(usuario.idUsuario!)" class="btn-eliminar">Eliminar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

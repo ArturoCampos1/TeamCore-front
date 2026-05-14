@@ -12,4 +12,12 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
+  findUsuarioByEmpresa(idEmpresa: number): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(`${this.apiUrl}/empleados/${idEmpresa}`);
+  }
+
+  deleteById(idUsuario: number): void {
+    this.http.get<number>(`${this.apiUrl}/idUsuario`);
+  }
+
 }

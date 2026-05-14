@@ -1,8 +1,13 @@
-<nav class="sidebar">
+<button class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">
+  <i class="hamburger-icon">&#9776;</i>
+</button>
+
+<div class="sidebar-overlay" [class.active]="menuOpen" (click)="toggleMenu()"></div>
+
+<nav class="sidebar" [class.open]="menuOpen">
 
   <div class="sidebar-brand">
     <img class="brand-icon" src="assets/teamcorelogo.png" alt="Logo">
-
     <div>
       <div class="brand-name">TeamCore</div>
     </div>
@@ -13,16 +18,15 @@
     <!-- GENERAL -->
     <li class="nav-section-label">General</li>
 
-    <li class="nav-item" 
-        routerLink="/dashboard/" >
+    <li class="nav-item" routerLink="/dashboard/">
       Dashboard
     </li>
 
-    <li class="nav-item" routerLink="/notificaciones" >
+    <li class="nav-item" routerLink="/notificaciones">
       Notificaciones
     </li>
 
-    <li class="nav-item" routerLink="/mi-perfil" >
+    <li class="nav-item" routerLink="/mi-perfil">
       Mi perfil
     </li>
 
@@ -35,9 +39,8 @@
       class="nav-item"
       *ngFor="let item of menuItems"
       [routerLink]="item.route"
-      
     >
-        {{ item.label }}
+      {{ item.label }}
     </li>
 
     <div class="nav-divider"></div>
@@ -45,7 +48,7 @@
     <!-- SISTEMA -->
     <li class="nav-section-label">Sistema</li>
 
-    <li class="nav-item" routerLink="/utilidades" >
+    <li class="nav-item" routerLink="/utilidades">
       Utilidades
     </li>
 
@@ -55,27 +58,16 @@
   <div class="sidebar-footer">
 
     <div class="user-row">
-
       <div class="avatar">
         {{ usuarioLogado?.iniciales }}
       </div>
-
       <div>
-        <div class="user-name">
-          {{ usuarioLogado?.dni }}
-        </div>
-
-        <div class="user-role">
-          {{ usuarioLogado?.rol }}
-        </div>
+        <div class="user-name">{{ usuarioLogado?.dni }}</div>
+        <div class="user-role">{{ usuarioLogado?.rol }}</div>
       </div>
-
     </div>
 
-    <button
-      (click)="onLogout()"
-      class="signout-btn"
-    >
+    <button (click)="onLogout()" class="signout-btn">
       Cerrar sesión
     </button>
 

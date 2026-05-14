@@ -3,10 +3,11 @@ import { AuthService } from '../../../services/auth-service';
 import { AdminData, JwtResponse } from '../../../models/models';
 import { AdminPart } from '../../../services/admin-part';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css',
 })

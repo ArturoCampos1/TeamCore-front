@@ -14,16 +14,16 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(dni: string, password: string): Observable<JwtResponse> {
+    login(dni: string, password: string): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(`${this.apiUrl}/login`, { dni, password }).pipe(
       tap((respuesta: JwtResponse) => {
-          console.log('Respuesta del back:', respuesta);
           localStorage.setItem('token', respuesta.token);
           localStorage.setItem('dni', respuesta.dni);
           localStorage.setItem('idEmpresa', respuesta.idEmpresa.toString());
           localStorage.setItem('nombreEmpresa', respuesta.nombreEmpresa);
+          localStorage.setItem('idUsuario', respuesta.idUsuario.toString());
           localStorage.setItem('nombre', respuesta.nombre);
-          localStorage.setItem('inicales', this.parseoIniciales(respuesta.nombre));
+          localStorage.setItem('iniciales', this.parseoIniciales(respuesta.nombre)); 
           localStorage.setItem('rol', respuesta.rol);
       })
     );
@@ -39,17 +39,19 @@ export class AuthService {
     const dni = localStorage.getItem('dni');
     const idEmpresa = localStorage.getItem('idEmpresa');
     const nombreEmpresa = localStorage.getItem('nombreEmpresa');
+    const idUsuario = localStorage.getItem('idUsuario');
     const nombre = localStorage.getItem('nombre');
-    const iniciales = localStorage.getItem('inicales');
+    const iniciales = localStorage.getItem('iniciales');
     const rol = localStorage.getItem('rol');
 
     let usuario: JwtResponse | null = null;
-    if (token && dni && idEmpresa && nombreEmpresa && nombre && iniciales && rol) {
+    if (token && dni && idEmpresa && nombreEmpresa && idUsuario && nombre && iniciales && rol) {
       usuario = {
         token,
         dni,
         idEmpresa: Number(idEmpresa),
         nombreEmpresa,
+        idUsuario: Number(idUsuario),
         nombre,
         iniciales,
         rol
@@ -80,6 +82,10 @@ export class AuthService {
 
   getIdEmpresa(): number {
     return Number(localStorage.getItem('idEmpresa'));
+  }
+
+  getIdUsuario(): number {
+    return Number(localStorage.getItem('idUsuario'));
   }
 
   estaLogueado(): boolean {

@@ -37,10 +37,9 @@ export class InicioSesion {
 
       const dni = this.formInicioSesion.get('dni')?.value;
       const contrasena = this.formInicioSesion.get('contrasena')?.value;
-
       this.authService.login(dni,contrasena).subscribe({
         next: (response) => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/main']);
         },
         error: (err) => {
         console.log('Error en el login:', err.error.mensaje);

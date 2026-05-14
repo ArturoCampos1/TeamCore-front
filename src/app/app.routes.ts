@@ -41,11 +41,11 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./layouts/main-layout/main-layout').then(c => c.MainLayout),
-    canActivate: [authGuard],
+    canActivate: [],
     children: [
 
       {
-        path: 'dashboard',
+        path: 'dashboard/main',
         loadComponent: () =>
           import('./components/dashboard/dashboard/dashboard').then(c => c.Dashboard)
       },
@@ -61,6 +61,27 @@ export const routes: Routes = [
         path: 'dashboard/admin/empresa',
         loadComponent: () =>
           import('./components/dashboard/gestiones/gestion-empresa/gestion-empresa').then(c => c.GestionEmpresa),
+        canActivate: [roleGuard],
+        data: { role: 'ADMIN' }
+      },
+      {
+        path: 'admin/empresa/verUsuarios',
+        loadComponent: () =>
+          import('./components/dashboard/gestiones/gestion-empresa/acciones/ver-usuarios/ver-usuarios').then(c => c.VerUsuarios),
+        canActivate: [roleGuard],
+        data: { role: 'ADMIN' }
+      },
+      {
+        path: 'admin/empresa/verProyectos',
+        loadComponent: () =>
+          import('./components/dashboard/gestiones/gestion-empresa/acciones/ver-proyectos/ver-proyectos').then(c => c.VerProyectos),
+        canActivate: [roleGuard],
+        data: { role: 'ADMIN' }
+      },
+      {
+        path: 'admin/empresa/verSolicitudes',
+        loadComponent: () =>
+          import('./components/dashboard/gestiones/gestion-empresa/acciones/ver-solicitudes/ver-solicitudes').then(c => c.VerSolicitudes),
         canActivate: [roleGuard],
         data: { role: 'ADMIN' }
       },

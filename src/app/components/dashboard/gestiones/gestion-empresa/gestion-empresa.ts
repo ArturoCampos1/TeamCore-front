@@ -6,10 +6,11 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import { SedeService } from '../../../../services/sede-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-empresa',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './gestion-empresa.html',
   styleUrl: './gestion-empresa.css',
 })
@@ -65,14 +66,32 @@ export class GestionEmpresa implements OnInit {
 
   crearSede(sede?: Sede): FormGroup {
     return this.fb.group({
-      idSede: [sede?.idSede],   
-      nombreSede: [sede?.nombreSede || '', [Validators.required]],
-      direccion: [sede?.direccion || ''],
-      pais: [sede?.pais || ''],
-      ciudad: [sede?.ciudad || ''],
-      codPostal: [sede?.codPostal || ''],
-      latitud: [sede?.latitud || ''],
-      longitud: [sede?.longitud || '']
+      idSede: [sede?.idSede],
+      nombreSede: [sede?.nombreSede || '', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100)
+      ]],
+      direccion: [sede?.direccion || '', [
+        Validators.minLength(5),
+        Validators.maxLength(150)
+      ]],
+      pais: [sede?.pais || '', [
+        Validators.minLength(3),
+        Validators.maxLength(100)
+      ]],
+      ciudad: [sede?.ciudad || '', [
+        Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/)
+      ]],
+      codPostal: [sede?.codPostal || '', [
+        Validators.pattern(/^\d{5}$/)
+      ]],
+      latitud: [sede?.latitud || '', [
+        Validators.pattern(/^-?([1-8]?\d(\.\d+)?|90(\.0+)?)$/)
+      ]],
+      longitud: [sede?.longitud || '', [
+        Validators.pattern(/^-?(1[0-7]\d(\.\d+)?|\d{1,2}(\.\d+)?|180(\.0+)?)$/)
+      ]]
     });
   }
 
@@ -83,7 +102,6 @@ export class GestionEmpresa implements OnInit {
     this.empresaService.findById(this.usuario.idEmpresa).subscribe({
       next: (data: Empresa) => {
         this.empresa = data;
-        console.log('Empresa cargada:', data);
         this.formEmpresa.patchValue({
           nombreEmpresa: data.nombreEmpresa,
           cif:           data.cif,

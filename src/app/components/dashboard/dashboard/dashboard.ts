@@ -13,7 +13,6 @@ export class Dashboard {
   constructor(private router: Router, private authService: AuthService){}
 
   ngOnInit(): void {
-
   const role = this.authService.getRol();
 
   switch(role) {

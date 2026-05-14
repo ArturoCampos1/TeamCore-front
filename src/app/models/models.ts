@@ -29,7 +29,6 @@ export interface Usuario {
   password: string;
 
   puesto?: string;
-  urlPhoto?: string;
   correo?: string;
   numeroTelefono?: string;
   direccion?: string;
@@ -43,8 +42,6 @@ export interface Usuario {
 
   fechaEntrada?: string; // LocalDate -> string (YYYY-MM-DD)
   fechaSalida?: string;
-
-  empleadoActivo?: boolean;
 
   nominas?: Nomina[];
   roles?: Rol[];
@@ -84,6 +81,7 @@ export interface JwtResponse {
   dni: string;
   idEmpresa: number;
   nombreEmpresa: string;
+  idUsuario: number;
   nombre: string;
   iniciales: string;
   rol: string;

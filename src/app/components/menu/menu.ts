@@ -48,4 +48,10 @@ export class Menu {
   onLogout() {
     this.authService.logout();
   }
+
+  menuOpen = false;
+
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+  }
 }

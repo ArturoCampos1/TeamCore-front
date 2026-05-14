@@ -62,17 +62,13 @@
       <small class="error"
         *ngIf="formEmpresa.get('fechaSalida')?.touched && formEmpresa.get('fechaSalida')?.errors">
 
-        <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['required']">
-          La fecha es obligatoria
-        </span>
+      <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['fechaMuyAntigua']">
+        La fecha es demasiado antigua
+      </span>
 
-        <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['pattern']">
-          Formato de fecha inválido
-        </span>
-
-        <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['fechaInvalida']">
-          La fecha no es válida
-        </span>
+      <span *ngIf="formEmpresa.get('fechaSalida')?.errors?.['fechaFutura']">
+        La fecha no puede ser futura
+      </span>
 
       </small>
     </div>
@@ -362,6 +358,19 @@
         </div>
       </form>
     </div>
-
   </div>
+  <div class="divEmpleadosProyectosSolicitudes">
+      <h3>Gestiona tus datos</h3>
+      <div class="empleadosProyectosSolicitudes">
+      <div class="empleados" routerLink="/admin/empresa/verUsuarios">
+        <p><img src="assets/empleados.svg" alt=""> Empleados</p>
+      </div>
+      <div class="proyectos" routerLink="/admin/empresa/verProyectos">
+        <p><img src="assets/proyectos.svg" alt=""> Proyectos</p>
+      </div>
+      <div class="solicitudes" routerLink="/admin/empresa/verProyectos">
+        <p><img src="assets/vacaciones.svg" alt=""> Solicitudes</p>
+      </div>
+    </div>
+    </div>
 </div>
