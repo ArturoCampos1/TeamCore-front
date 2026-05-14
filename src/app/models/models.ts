@@ -43,8 +43,7 @@ export interface Usuario {
   fechaEntrada?: string; // LocalDate -> string (YYYY-MM-DD)
   fechaSalida?: string;
 
-  nominas?: Nomina[];
-  roles?: Rol[];
+  roles?: Rol;
 }
 
 export interface RegistroData {
@@ -57,17 +56,6 @@ export interface Rol {
   idRol?: number;
   nombreRol: string;
   permisos?: Permiso[];
-}
-
-export interface Nomina {
-  idNomina?: number;
-
-  nombreNomina: string;
-  salarioMensual: number;
-
-  fechaGeneracion: string; // LocalDate -> string (YYYY-MM-DD)
-
-  usuario?: Usuario;
 }
 
 export interface Permiso {

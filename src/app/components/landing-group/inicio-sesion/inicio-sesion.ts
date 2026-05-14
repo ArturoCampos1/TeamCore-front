@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
@@ -12,9 +12,6 @@ import { NgIf } from '@angular/common';
 })
 export class InicioSesion {
 
-    msjErrorUsuario: boolean = false;
-    msjErrorContrasena: boolean = false;
-
     mensajeError: string = '';
 
     formInicioSesion : FormGroup;
@@ -22,7 +19,8 @@ export class InicioSesion {
   constructor(
         private router: Router,
         private fb: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private cd: ChangeDetectorRef
   ){
     this.formInicioSesion = this.fb.group({
       dni: ['', Validators.required],
@@ -42,10 +40,17 @@ export class InicioSesion {
           this.router.navigate(['/dashboard/main']);
         },
         error: (err) => {
-        console.log('Error en el login:', err.error.mensaje);
+          this.mensajeError = err.error.mensaje;
+          this.cd.detectChanges();
+          if (err.error.mensaje === 'Contraseña incorrecta'){
+            this.mensajeError = 'Contraseña incorrecta'
+            this.cd.detectChanges();
+          }
+          if (err.error.mensaje === 'Usuario no encontrado'){
+            this.mensajeError = 'Usuario no encontrado'
+            this.cd.detectChanges();
+          }
         }});
-    } else {
-
     }
   }
 

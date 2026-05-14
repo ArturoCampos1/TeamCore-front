@@ -1,0 +1,39 @@
+.content {
+  padding: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+input,
+select {
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+small {
+  color: red;
+  margin-top: 0.3rem;
+}
+
+.actions {
+  margin-top: 2rem;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+}
