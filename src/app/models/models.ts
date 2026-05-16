@@ -23,6 +23,7 @@ export interface Sede {
 
 export interface Usuario {
   idUsuario?: number;
+  empresa?: { idEmpresa: number };
 
   nombreUsuario: string;
   dni: string;
@@ -33,7 +34,7 @@ export interface Usuario {
   numeroTelefono?: string;
   direccion?: string;
 
-  iban?: string;
+  IBAN?: string;
   numSeguridadSocial?: string;
 
   salarioBruto?: number;
@@ -43,7 +44,7 @@ export interface Usuario {
   fechaEntrada?: string; // LocalDate -> string (YYYY-MM-DD)
   fechaSalida?: string;
 
-  roles?: Rol;
+  rol?: Rol;
 }
 
 export interface RegistroData {

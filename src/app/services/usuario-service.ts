@@ -15,9 +15,13 @@ export class UsuarioService {
   findUsuarioByEmpresa(idEmpresa: number): Observable<Usuario[]>{
     return this.http.get<Usuario[]>(`${this.apiUrl}/empleados/${idEmpresa}`);
   }
+  
+  deleteById(idUsuario: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${idUsuario}`);
+  }
 
-  deleteById(idUsuario: number): void {
-    this.http.get<number>(`${this.apiUrl}/idUsuario`);
+  crearUsuario(usuario: Usuario): Observable<void> {
+    return this.http.post<void>(this.apiUrl, usuario);
   }
 
 }

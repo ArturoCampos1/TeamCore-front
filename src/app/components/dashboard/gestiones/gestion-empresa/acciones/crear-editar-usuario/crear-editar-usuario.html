@@ -1,119 +1,131 @@
 <div class="content">
-  <h3>Creación / Edición de empleado</h3>
+
+  <!-- Header -->
+  <div class="form-header">
+    <div class="header-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <line x1="19" y1="8" x2="19" y2="14"/>
+        <line x1="22" y1="11" x2="16" y2="11"/>
+      </svg>
+    </div>
+    <div>
+      <h2><b>Creación / Edición de empleado</b></h2>
+      <p>Completa los campos para registrar o actualizar los datos del empleado.</p>
+    </div>
+  </div>
 
   <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
-
     <div class="form-grid">
+
+      <!-- ── Datos personales ── -->
+      <div class="section-label">Datos personales</div>
 
       <!-- Nombre -->
       <div class="form-group">
-        <label>Nombre de usuario *</label>
-        <input type="text" formControlName="nombreUsuario">
-
-        <small
-          *ngIf="usuarioForm.get('nombreUsuario')?.invalid &&
-                 usuarioForm.get('nombreUsuario')?.touched">
+        <label>Nombre de usuario <span class="required-dot"></span></label>
+        <input type="text" formControlName="nombreUsuario" placeholder="Ej. Juan García">
+        <small *ngIf="usuarioForm.get('nombreUsuario')?.invalid && usuarioForm.get('nombreUsuario')?.touched">
           El nombre es obligatorio y debe tener mínimo 3 caracteres.
         </small>
       </div>
 
       <!-- DNI -->
       <div class="form-group">
-        <label>DNI *</label>
-        <input type="text" formControlName="dni">
-
-        <small
-          *ngIf="usuarioForm.get('dni')?.invalid &&
-                 usuarioForm.get('dni')?.touched">
+        <label>DNI <span class="required-dot"></span></label>
+        <input type="text" formControlName="dni" placeholder="Ej. 12345678A">
+        <small *ngIf="usuarioForm.get('dni')?.invalid && usuarioForm.get('dni')?.touched">
           Introduce un DNI válido.
         </small>
       </div>
 
       <!-- Password -->
       <div class="form-group">
-        <label>Contraseña *</label>
-        <input type="password" formControlName="password">
-
-        <small
-          *ngIf="usuarioForm.get('password')?.invalid &&
-                 usuarioForm.get('password')?.touched">
+        <label>Contraseña <span class="required-dot"></span></label>
+        <input type="password" formControlName="password" placeholder="Mínimo 6 caracteres">
+        <small *ngIf="usuarioForm.get('password')?.invalid && usuarioForm.get('password')?.touched">
           Mínimo 6 caracteres.
         </small>
       </div>
 
-      <!-- Puesto -->
-      <div class="form-group">
-        <label>Puesto</label>
-        <input type="text" formControlName="puesto">
-      </div>
-
       <!-- Correo -->
       <div class="form-group">
-        <label>Correo electrónico</label>
-        <input type="email" formControlName="correo">
-
-        <small
-          *ngIf="usuarioForm.get('correo')?.invalid &&
-                 usuarioForm.get('correo')?.touched">
+        <label>Correo electrónico <span class="required-dot"></span></label>
+        <input type="email" formControlName="correo" placeholder="correo@empresa.com">
+        <small *ngIf="usuarioForm.get('correo')?.invalid && usuarioForm.get('correo')?.touched">
           Correo inválido.
         </small>
       </div>
 
       <!-- Teléfono -->
       <div class="form-group">
-        <label>Teléfono</label>
-        <input type="text" formControlName="numeroTelefono">
-
-        <small
-          *ngIf="usuarioForm.get('numeroTelefono')?.invalid &&
-                 usuarioForm.get('numeroTelefono')?.touched">
+        <label>Teléfono <span class="required-dot"></span></label>
+        <input type="text" formControlName="numeroTelefono" placeholder="Ej. 600 000 000">
+        <small *ngIf="usuarioForm.get('numeroTelefono')?.invalid && usuarioForm.get('numeroTelefono')?.touched">
           Número inválido.
         </small>
       </div>
 
       <!-- Dirección -->
       <div class="form-group full-width">
-        <label>Dirección</label>
-        <input type="text" formControlName="direccion">
-      </div>
-
-      <!-- IBAN -->
-      <div class="form-group">
-        <label>IBAN</label>
-        <input type="text" formControlName="iban">
-
-        <small
-          *ngIf="usuarioForm.get('iban')?.invalid &&
-                 usuarioForm.get('iban')?.touched">
-          IBAN inválido.
+        <label>Dirección <span class="required-dot"></span></label>
+        <input type="text" formControlName="direccion" placeholder="Calle, número, ciudad...">
+        <small *ngIf="usuarioForm.get('direccion')?.invalid && usuarioForm.get('direccion')?.touched">
+          Dirección obligatoria.
         </small>
       </div>
 
-      <!-- Seguridad Social -->
+      <!-- ── Datos laborales ── -->
+      <div class="section-label">Datos laborales</div>
+
+      <!-- Puesto -->
       <div class="form-group">
-        <label>Nº Seguridad Social</label>
-        <input type="text" formControlName="numSeguridadSocial">
+        <label>Puesto <span class="required-dot"></span></label>
+        <input type="text" formControlName="puesto" placeholder="Ej. Desarrollador">
+        <small *ngIf="usuarioForm.get('puesto')?.invalid && usuarioForm.get('puesto')?.touched">
+          Puesto obligatorio.
+        </small>
+      </div>
+
+      <!-- Roles -->
+      <div class="form-group">
+        <label>Rol <span class="required-dot"></span></label>
+        <select formControlName="rol">
+          <option value="">Selecciona un rol</option>
+          <option [value]="2">GERENTE</option>
+          <option [value]="3">RRHH</option>
+          <option [value]="4">USUARIO</option>
+          <option [value]="5">INVITADO</option>
+        </select>
+        <small *ngIf="usuarioForm.get('rol')?.invalid && usuarioForm.get('rol')?.touched">
+          Debes seleccionar un rol.
+        </small>
       </div>
 
       <!-- Salario -->
       <div class="form-group">
-        <label>Salario bruto</label>
-        <input type="number" formControlName="salarioBruto">
+        <label>Salario bruto <span class="required-dot"></span></label>
+        <input type="number" formControlName="salarioBruto" placeholder="Ej. 30000">
+        <small *ngIf="usuarioForm.get('salarioBruto')?.invalid && usuarioForm.get('salarioBruto')?.touched">
+          Salario bruto obligatorio.
+        </small>
       </div>
 
       <!-- Horas -->
       <div class="form-group">
-        <label>Horas semanales</label>
-        <input type="number" formControlName="horasSemanales">
+        <label>Horas semanales <span class="required-dot"></span></label>
+        <input type="number" formControlName="horasSemanales" placeholder="Ej. 40">
+        <small *ngIf="usuarioForm.get('horasSemanales')?.invalid && usuarioForm.get('horasSemanales')?.touched">
+          Las horas semanales son obligatorias.
+        </small>
       </div>
 
       <!-- Vacaciones -->
       <div class="form-group">
-        <label>Días de vacaciones</label>
-        <input
-          type="number"
-          formControlName="diasVacacionesDisponibles"
-          readonly>
+        <label>Días de vacaciones disponibles</label>
+        <input type="number" formControlName="diasVacacionesDisponibles" readonly>
       </div>
 
       <!-- Fecha entrada -->
@@ -128,29 +140,33 @@
         <input type="date" formControlName="fechaSalida">
       </div>
 
-      <!-- Roles -->
+      <!-- ── Datos financieros y seguridad social ── -->
+      <div class="section-label">Datos financieros y seguridad social</div>
+
+      <!-- IBAN -->
       <div class="form-group">
-        <label>Rol *</label>
+        <label>IBAN <span class="required-dot"></span></label>
+        <input type="text" formControlName="iban" placeholder="ES00 0000 0000 0000 0000 0000">
+        <small *ngIf="usuarioForm.get('iban')?.invalid && usuarioForm.get('iban')?.touched">
+          IBAN inválido.
+        </small>
+      </div>
 
-        <select formControlName="roles">
-          <option value="">Selecciona un rol</option>
-          <option *ngFor="let rol of rolesDisponibles" [value]="rol">
-            {{ rol }}
-          </option>
-        </select>
-
-        <small
-          *ngIf="usuarioForm.get('roles')?.invalid &&
-                 usuarioForm.get('roles')?.touched">
-          Debes seleccionar un rol.
+      <!-- Seguridad Social -->
+      <div class="form-group">
+        <label>Nº Seguridad Social <span class="required-dot"></span></label>
+        <input type="text" formControlName="numSeguridadSocial" placeholder="Ej. 28/12345678/00">
+        <small *ngIf="usuarioForm.get('numSeguridadSocial')?.invalid && usuarioForm.get('numSeguridadSocial')?.touched">
+          Número de la seguridad social obligatorio.
         </small>
       </div>
 
     </div>
 
+    <!-- Acciones -->
     <div class="actions">
-      <button routerLink="/admin/empresa/verUsuarios">Volver</button>
-      <button type="submit">Guardar usuario</button>
+      <button type="button" routerLink="/admin/empresa/verUsuarios">Volver</button>
+      <button (click)="guardarUsuario()" type="submit">Guardar usuario</button>
     </div>
 
   </form>
