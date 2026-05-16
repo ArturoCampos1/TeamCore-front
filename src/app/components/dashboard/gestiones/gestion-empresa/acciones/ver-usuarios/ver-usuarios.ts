@@ -3,7 +3,7 @@ import { JwtResponse, Usuario } from '../../../../../../models/models';
 import { AuthService } from '../../../../../../services/auth-service';
 import { UsuarioService } from '../../../../../../services/usuario-service';
 import { NgFor, NgIf} from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ver-usuarios',
@@ -20,7 +20,8 @@ export class VerUsuarios {
   constructor(
     private authService: AuthService,
     private usuarioService: UsuarioService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -45,8 +46,21 @@ export class VerUsuarios {
     if (this.usuarioLogado?.idUsuario === idUsuario) {
       alert("No te puedes borrar")
     } else{
-      this.usuarioService.deleteById(idUsuario);
+      this.usuarioService.deleteById(idUsuario).subscribe({
+      next: () => {
+        this.ngOnInit
+      },
+      error: (err) => {
+        console.log(err);
+      }
+      })
       this.ngOnInit()
     }
+  }
+
+  editarUsuario(usuario: Usuario): void {
+    this.router.navigate(['/admin/empresa/crearEditarUsuarios'], {
+      state: { usuario: usuario }
+    });
   }
 }

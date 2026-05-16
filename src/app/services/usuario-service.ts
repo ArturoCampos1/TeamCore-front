@@ -24,4 +24,8 @@ export class UsuarioService {
     return this.http.post<void>(this.apiUrl, usuario);
   }
 
+  actualizarUsuario(id: number, usuario: Usuario): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, usuario);
+  }
+
 }

@@ -5,7 +5,7 @@
         <h2 class="titulo">Empleados</h2>
         <button class="btn-crear" routerLink="/admin/empresa/crearEditarUsuarios">Crear</button>
     </div>
-    <p style="margin: 0;">Total empleados: {{ usuarios.length }}</p>
+    <p style="margin: 0;">Total empleados: <span style="color: #4f7ced;">{{ usuarios.length }}</span></p>
     <div *ngFor="let usuario of usuarios" class="tarjeta-empleados">
       <div class="header-usuario">
         <div>
@@ -32,7 +32,7 @@
 
         <div class="acciones">
 
-          <button class="btn-editar">Editar</button>
+          <button class="btn-editar" (click)="editarUsuario(usuario)">Editar</button>
 
           <button (click)="deleteUsuario(usuario.idUsuario!)" class="btn-eliminar">Eliminar</button>
 

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { NgIf} from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { RouterLink, Router } from '@angular/router';
 import { UsuarioService } from '../../../../../../services/usuario-service';
 import { AuthService } from '../../../../../../services/auth-service';
 import { JwtResponse } from '../../../../../../models/models';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-crear-editar-usuario',
   imports: [NgIf, RouterLink, ReactiveFormsModule],
@@ -16,6 +16,7 @@ export class CrearEditarUsuario {
 
   usuarioForm: FormGroup;
   usuarioLogado?: JwtResponse | null;
+  usuarioEditar: any = null;
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +24,6 @@ export class CrearEditarUsuario {
     private authService: AuthService,
     private router: Router
   ) {
-
     const hoy = new Date().toISOString().substring(0, 10);
 
     this.usuarioForm = this.fb.group({
@@ -36,19 +36,51 @@ export class CrearEditarUsuario {
       correo: ['', [Validators.required, Validators.email]],
       numeroTelefono: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
       direccion: ['', [Validators.required, Validators.maxLength(255)]],
-      iban: ['', [Validators.required, Validators.pattern(/^ES\d{22}$/)]],
+      IBAN: ['', [Validators.required, Validators.pattern(/^ES\d{22}$/)]],
       numSeguridadSocial: ['', [Validators.required, Validators.pattern(/^[0-9]{12}$/)]],
       salarioBruto: [null, [Validators.required, Validators.min(0)]],
       horasSemanales: [null, [Validators.required, Validators.min(1), Validators.max(40)]],
-      diasVacacionesDisponibles: [{value: '0', disabled: true}],
-      fechaEntrada: [{value: hoy, disabled: true}], 
-      fechaSalida: [{value: '', disabled: true}],
+      diasVacacionesDisponibles: [{ value: '0', disabled: true }],
+      fechaEntrada: [{ value: hoy, disabled: true }],
+      fechaSalida: [{ value: '', disabled: true }],
       rol: ['', [Validators.required]]
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.usuarioLogado = this.authService.getUsuarioLogado();
+
+    const usuario = history.state.usuario;
+
+    if (usuario) {
+      this.usuarioEditar = usuario;
+      this.usuarioForm.patchValue({
+        nombreUsuario: usuario.nombreUsuario,
+        dni: usuario.dni,
+        correo: usuario.correo,
+        puesto: usuario.puesto,
+        numeroTelefono: usuario.numeroTelefono,
+        direccion: usuario.direccion,
+        IBAN: usuario.IBAN,
+        numSeguridadSocial: usuario.numSeguridadSocial,
+        salarioBruto: usuario.salarioBruto,
+        horasSemanales: usuario.horasSemanales,
+        diasVacacionesDisponibles: usuario.diasVacacionesDisponibles,
+        fechaEntrada: usuario.fechaEntrada,
+        fechaSalida: usuario.fechaSalida,
+        rol: usuario.rol?.idRol
+      });
+
+      this.usuarioForm.get('password')?.disable();
+
+      if (usuario.rol?.nombreRol === 'ADMIN') {
+        this.usuarioForm.get('rol')?.disable();
+      }
+
+      // En edición la contraseña no es obligatoria
+      this.usuarioForm.get('password')?.clearValidators();
+      this.usuarioForm.get('password')?.updateValueAndValidity();
+    }
   }
 
   guardarUsuario(): void {
@@ -57,17 +89,25 @@ export class CrearEditarUsuario {
       return;
     }
 
+    const formValue = this.usuarioForm.getRawValue();
+
     const usuario = {
-      ...this.usuarioForm.getRawValue(),
+      ...formValue,
       empresa: { idEmpresa: this.usuarioLogado?.idEmpresa },
-      rol: { idRol: this.usuarioForm.get('rol')?.value }
+      rol: { idRol: formValue.rol }
     };
 
-    this.usuarioService.crearUsuario(usuario).subscribe({
-      next: () => { 
-        this.router.navigate(['/admin/empresa/verUsuarios'])
-       },
-      error: (err) => console.error(err)
-    });
+    if (this.usuarioEditar) {
+      usuario.idUsuario = this.usuarioEditar.idUsuario;
+      this.usuarioService.actualizarUsuario(usuario.idUsuario, usuario).subscribe({
+        next: () => this.router.navigate(['/admin/empresa/verUsuarios']),
+        error: (err) => console.error(err)
+      });
+    } else {
+      this.usuarioService.crearUsuario(usuario).subscribe({
+        next: () => this.router.navigate(['/admin/empresa/verUsuarios']),
+        error: (err) => console.error(err)
+      });
+    }
   }
 }
